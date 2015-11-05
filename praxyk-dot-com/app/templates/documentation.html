@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block navbar %}
+    {{ navbar|safe }}
+{% endblock %}
+
+{% block content %}
+    <div class="jumbotron col-md-12 col-lg-12 col-sm-12">
+        <h1> Praxyk Developers </h1>
+        <p> Praxyk is 100% open source and developer friendly. We know you want to access powerful machine-learning models programmatically, and with the Praxyk API you can. The entire Praxyk infrastructure is built around our API, so using the API gives you access to the same powerful resources that you get through this website. </p>
+            <div class="panel panel-default col-md-4 col-sm-4">
+                <a href="documentation/api">
+					<h5> API Documentation </h5>
+					<img src="static/img/home_page_img_1.png" class="img-responsive" alt="Data Graph" >
+                </a>
+                <p> Read our Complete API documentation. </p>
+            </div>
+            <div class="panel panel-default col-md-4 col-sm-4">
+                <a href="https://github.com/jhallard/praxyk-clients">
+					<h5> Client Libraries </h5>
+					<img src="static/img/home_page_img_2.png" class="img-responsive" alt="Data Graph" >
+				</a>
+                <p> Try one of our various client API bindings (Python, C++, and Javascript)</p>
+            </div>
+            <div class="panel panel-default col-md-4 col-sm-4">
+                <a href="https://github.com/jhallard/praxyk">
+					<h5> Build Your Own Praxyk?</h5>
+					<img src="static/img/github.jpg" class="img-responsive" alt="Data Graph" >
+				</a>
+                <p> The entire Praxyk code-base is 100% libre and gratis, available <a href="https://github.com/jhallard/praxyk"> here on Github. </a>
+            </div>
+
+    </div>
+{% endblock %}

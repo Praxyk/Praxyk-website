@@ -1,0 +1,80 @@
+@import 'base'
+
+$defbackgrnd    : $colorDarkBlue
+$activebg         : $colorLightBlue
+$colordefault : $colorLightGray
+$activecolor    : $colorDarkBlue
+$colHighlight : $colorWhite
+$bdrcolor         : $colorDarkBlue 
+$dropDown         : false 
+$navHeight        : 50px
+
+.navbar 
+    min-height: $navHeight
+    border-radius: 0px
+    margin: 0px
+    padding: 0px
+    border: 0px
+    .affix
+        position: fixed
+        top: 0px
+        width: 100%
+    .navbar-default 
+        height: $navHeight
+        background-color: $defbackgrnd
+        border-color: $bdrcolor
+        .navbar-brand 
+            color: $colordefault
+            &:hover, &:focus 
+                color: $colHighlight
+        .navbar-text 
+            color: $colordefault
+            width: 75%
+        .navbar-nav 
+            > li 
+                > a 
+                    color: $colordefault
+                    font-size: 14px
+                    &:hover, &:focus 
+                        color: $colHighlight
+                @if $dropDown
+                    > .dropdown-menu
+                        background-color: $defbackgrnd
+                        > li > a
+                            color: $colordefault
+                            &:hover, &:focus
+                                color: $colHighlight
+                                background-color: $activebg
+                        .divider
+                            background-color: $activebg
+            > .active 
+                > a, > a:hover, > a:focus 
+                    color: $colHighlight
+                    background-color: $activebg 
+            > .open 
+                > a, > a:hover, > a:focus 
+                    color: $colHighlight
+                    background-color: $activebg 
+        .navbar-toggle 
+            border-color: $bdrcolor
+            &:hover, &:focus 
+                background-color: $activebg 
+            .icon-bar 
+                background-color: $colordefault
+        .navbar-collapse,
+        .navbar-form 
+            border-color: $colordefault 
+        .navbar-link 
+            color: $colordefault
+            &:hover 
+                color: $activecolor
+    @media (max-width: 767px) 
+        .navbar-default .navbar-nav .open .dropdown-menu 
+            > li > a 
+                color: $colordefault
+                &:hover, &:focus 
+                    color: $colHighlight
+            > .active 
+                > a, > a:hover, > a:focus 
+                    color: $colHighlight
+                    background-color: $activebg

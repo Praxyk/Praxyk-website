@@ -1,0 +1,122 @@
+{% extends "dashboard/dashboard_base.html" %}
+
+<head>
+<script type="text/javascript" src="/static/js/scripts/graphs.js"></script>
+</head>
+
+{% block navbar %}
+{{ navbar|safe }}
+{% endblock %}
+
+{% block sidebar %}
+{{ sidebar|safe }}
+{% endblock %}
+
+{% block content %}
+    <div class="col-sm-offset-2 col-md-offset-1 col-lg-offset-1 col-sm-10 col-md-10 col-lg-10">
+    <br>
+        <div><h2 style="text-align:center"> Transactions </h2></div>
+
+		<div class="row">
+			<div class="col-md-8 col-lg-8 col-sm-8">
+				<div class="col-md-12 col-lg-12 col-sm-12">
+				  <div class="card" style="overflow:auto; max-height:40%">
+					<table data-toggle="table" class="table table-responsive table-condensed table-striped table-hover">
+					  <thead>
+						<tr>
+							<th data-field="id">ID</th>
+							<th data-field="name">Status</th>
+							<th data-field="service">Service</th>
+							<th data-field="model">Model</th>
+							<th data-field="price">Price</th>
+							<th data-field="size_total_KB">Size (KB)</th>
+							<th data-field="uploaded">Items</th>
+							<th data-field="links">More Info</th>
+						</tr>
+					  </thead>
+							
+						{% for transaction in all_transactions %}
+						<tr>	
+							<td><strong>{{ transaction.trans_id }}</strong></td>
+							<td>{{ transaction.status }}</td>
+							<td>{{ transaction.service }}</td>
+							<td>{{ transaction.model }}</td>
+							<td>$0.00</td>
+							<td>{{ transaction.size_total_KB }}</td>
+							<td>{{ transaction.uploads_success }}</td>
+							<td><a href="/dashboard/transaction/{{ transaction.trans_id }}" class="btn btn-default"> Full Info </a>
+								<a href="/dashboard/results/{{ transaction.trans_id }}" class="btn btn-default"> Results </a></td>
+						</tr>
+						{% endfor %}
+					</table>
+					</div>
+
+			</div>
+			</div>
+
+            <div class="col-md-4 col-lg-4 col-sm-4">
+			 <div class="col-md-12 col-lg-12 col-sm-12">
+              <div class="card">
+                  <div class="cardtitle">
+                    <h5 style="text-align:center" >Transaction States</h5>
+                  </div>
+                  <div class="cardbody">
+                    <div id="tester"></div>
+                  </div>
+                </div>
+            </div>
+            </div>
+
+		</div>
+
+        <div class="row">
+
+            <div class="col-md-8 col-lg-8 col-sm-8">
+			 <div class="col-md-12 col-lg-12 col-sm-12">
+              <div class="card">
+                  <div class="cardtitle">
+                    <h5 style="text-align:center" >Request History</h5>
+                  </div>
+                  <div class="cardbody">
+                    <div id="date-counts"></div>
+                  </div>
+                </div>
+            </div>
+            </div>
+
+
+				<div class="col-md-4 col-lg-4 col-sm-4">
+				<div class="col-md-12 col-lg-12 col-sm-12">
+				  <div class="card">
+					  <div class="cardtitle">
+						<h5 style="text-align:center" > Data Ingress</h5>
+					  </div>
+					  <div class="cardbody">
+						  <h3 style="text-align:center"> {{ ingress_str }} </h3>
+					  </div>
+					</div>
+				</div>
+
+				<div class="col-md-12 col-lg-12 col-sm-12">
+				  <div class="card">
+					  <div class="cardtitle">
+						<h5 style="text-align:center" > Total Requests</h5>
+					  </div>
+					  <div class="cardbody">
+						  <h3 style="text-align:center">{{ num_transactions }} </h3>
+					  </div>
+					</div>
+				</div>
+				</div>
+
+
+      </div>
+        
+    </div>
+    </div>
+<script src="/static/js/scripts/graphs.js"></script>
+<script> transaction_status_pie({{ state_counts|safe }}, {{ state_names|safe }});
+		 transaction_status_bar({{ date_counts|safe }}, {{ dates|safe }});
+</script>
+		
+{% endblock %}

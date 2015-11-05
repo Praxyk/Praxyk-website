@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block navbar %}
+    {{ navbar|safe }}
+{% endblock %}
+
+{% block content %}
+    <div class" col-md-12 col-lg-12 col-sm-12">
+    <div class="jumbotron">
+        <h1> Praxyk Services</h1>
+        <p> Praxyk offers a wide-array of services to fit your data-science needs. </p>
+    </div>
+            <div class="jumbotron">
+                <a href="documentation/api">
+					<h5> Prediction on Demand </h5>
+					<img src="/static/img/home_page_img_1.png" class="img-responsive" alt="Data Graph" >
+                </a>
+                <p> Read our Complete API documentation. </p>
+            </div>
+            <div class="jumbotron">
+                <a href="https://github.com/jhallard/praxyk-clients">
+					<h5> Templated Learning Platform </h5>
+					<img src="/static/img/home_page_img_2.png" class="img-responsive" alt="Data Graph" >
+				</a>
+                <p> Try one of our various client API bindings (Python, C++, and Javascript)</p>
+            </div>
+    </div>
+    </div>
+{% endblock %}

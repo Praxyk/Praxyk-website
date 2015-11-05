@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="436px" height="340px" viewBox="0 0 436 340" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.2 (12043) - http://www.bohemiancoding.com/sketch -->
+    <title>data dashboard</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M32,291.780212 C14.0019465,289.789997 0,274.52798 0,256 L16,256 C16,267.028 24.972,276 36,276 L400,276 C411.028,276 420,267.028 420,256 L436,256 C436,274.52798 421.998053,289.789997 404,291.780212 L32,291.780212 Z M436,36 L420,36 C420,24.972 411.028,16 400,16 L400,0 C419.88,0 436,16.12 436,36 L436,36 Z M0,36 L16,36 C16,24.972 24.972,16 36,16 L36,0 C16.12,0 0,16.12 0,36 L0,36 Z M16,36 L16,256 L0,256 L0,36 L16,36 Z M436,36 L436,256 L420,256 L420,36 L436,36 Z M36,0 L400,0 L400,16 L36,16 L36,0 L36,0 Z" id="path-1"></path>
+    </defs>
+    <g id="tour" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g sketch:type="MSArtboardGroup" transform="translate(-853.000000, -4121.000000)" id="data-dashboard">
+            <g sketch:type="MSLayerGroup" transform="translate(853.000000, 4121.000000)">
+                <g id="Rectangle-100-+-Rectangle-12-Copy-5">
+                    <rect id="Rectangle-100" fill="#FFFFFF" sketch:type="MSShapeGroup" x="14" y="15" width="407" height="262"></rect>
+                    <rect id="Rectangle-101" fill="#FFFFFF" sketch:type="MSShapeGroup" x="158" y="273" width="122" height="53"></rect>
+                    <g id="Rectangle-12-Copy-2">
+                        <use fill="#232C2A" fill-rule="evenodd" sketch:type="MSShapeGroup" xlink:href="#path-1"></use>
+                        <use fill="none" xlink:href="#path-1"></use>
+                    </g>
+                    <rect id="Rectangle-94-Copy-3" fill="#232C2A" sketch:type="MSShapeGroup" x="134" y="324" width="168" height="16" rx="8"></rect>
+                    <rect id="Rectangle-92-Copy-7" fill="#232C2A" sketch:type="MSShapeGroup" x="154" y="290" width="16" height="50"></rect>
+                    <rect id="Rectangle-92-Copy-8" fill="#232C2A" sketch:type="MSShapeGroup" x="266" y="290" width="16" height="50"></rect>
+                </g>
+                <g id="Group" transform="translate(81.000000, 68.000000)" sketch:type="MSShapeGroup">
+                    <rect id="Rectangle-33-Copy-9" fill="#27B0A3" x="0" y="54" width="16" height="96" rx="8"></rect>
+                    <rect id="Rectangle-33-Copy-8" fill="#E54142" x="0" y="98" width="16" height="53" rx="8"></rect>
+                    <rect id="Rectangle-35-Copy-4" fill="#232C2A" x="0" y="92" width="16" height="36" rx="8"></rect>
+                    <rect id="Rectangle-33-Copy-11" fill="#27B0A3" x="28" y="36" width="16" height="114" rx="8"></rect>
+                    <rect id="Rectangle-33-Copy-10" fill="#E54142" x="28" y="97" width="16" height="54" rx="8"></rect>
+                    <rect id="Rectangle-35-Copy-5" fill="#232C2A" x="28" y="77" width="16" height="36" rx="8"></rect>
+                    <rect id="Rectangle-33-Copy-13" fill="#27B0A3" x="56" y="42" width="16" height="108" rx="8"></rect>
+                    <rect id="Rectangle-33-Copy-12" fill="#E54142" x="56" y="83" width="16" height="68" rx="8"></rect>
+                    <rect id="Rectangle-35-Copy-6" fill="#232C2A" x="56" y="80" width="16" height="44" rx="8"></rect>
+                    <rect id="Rectangle-33-Copy-15" fill="#27B0A3" x="84" y="4" width="16" height="146" rx="8"></rect>
+                    <rect id="Rectangle-33-Copy-14" fill="#E54142" x="84" y="45" width="16" height="106" rx="8"></rect>
+                    <rect id="Rectangle-35-Copy-7" fill="#232C2A" x="84" y="39" width="16" height="53" rx="8"></rect>
+                    <g id="Fill-1-+-Fill-2-Copy-+-Fill-3-Copy" transform="translate(126.000000, 0.000000)">
+                        <path d="M74,132.98 C42.02,132.98 16,106.962 16,74.98 C16,42.998 42.02,16.98 74,16.98 C89.99,16.98 104.49,23.484 114.992,33.986 L126.326,22.654 C112.934,9.264 94.434,0.98 74,0.98 C33.13,0.98 0,34.11 0,74.98 C0,115.85 33.13,148.98 74,148.98 C76.538,148.98 79.046,148.85 81.52,148.6 L79.892,132.682 C77.956,132.878 75.988,132.98 74,132.98" id="Fill-1" fill="#27B0A3"></path>
+                        <path d="M132.008,75.306 C132.008,90.596 126.052,104.512 116.348,114.886 L128.054,125.828 C140.424,112.6 148.008,94.844 148.008,75.306 C148.008,54.872 139.724,36.372 126.334,22.98 L115,34.312 C125.504,44.816 132.008,59.316 132.008,75.306" id="Fill-2-Copy" fill="#E54142"></path>
+                        <path d="M128.154,125.922 L116.448,114.98 C107.12,124.954 94.326,131.65 80,133.102 L81.628,149.02 C99.932,147.174 116.256,138.644 128.154,125.922" id="Fill-3-Copy" fill="#232C2A"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

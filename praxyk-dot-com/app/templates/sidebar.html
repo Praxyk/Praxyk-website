@@ -1,0 +1,41 @@
+<link rel="stylesheet" type="text/css" href="/static/css/sidebar.css">
+	<div id="sidebar-wrapper">
+		<ul class="sidebar-nav">
+			<li class="sidebar-brand">
+                <div class="row">
+                    <a href="#menu-toggle" id="menu-toggle-inline">
+                            <strong>Dashboard </strong>
+                        <i class="fa fa-bars fa-1x">
+                        </i>
+                    </a>
+                </div>
+			</li>
+			<hr>
+			<li>
+				<a class="active" href="/dashboard/home">Home</a>
+			</li>
+			<li>
+				<a href="/dashboard/transactions">Transactions</a>
+			</li>
+			<li>
+				<a href="/dashboard/results/1">Results</a>
+			</li>
+			<li>
+				<a href="/dashboard/services">Services</a>
+			</li>
+			<li>
+				<a href="#">Tutorials</a>
+			</li>
+            <li data-toggle="collapse" data-target="#account-list"> <span>
+                    <a href="#">Account </a>
+            </span>
+                <ul class="nav collapse" id="account-list">
+                    <li><a href="/dashboard/account" title="settings">Settings</a>
+                    </li>
+                    <li><a href="/logout" title="Edit user accounts">logout</a>
+                    </li>
+                </ul>
+            </li>
+
+		</ul>
+	</div>
