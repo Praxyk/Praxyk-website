@@ -97,6 +97,7 @@
 					  <a href="#" val="face_detect" class="list-group-item">Facial Detection</a>
 					  <a href="#" val="bayes_spam" class="list-group-item">Bayes-Spam Detection</a>
 					</div>
+					<div class="" val="ocr" id="pod_storage"></div>
 				</div>
 				<hr>
 				<div class="col-md-12 col-sm-12 col-lg-12">
@@ -131,6 +132,7 @@
 $('#pod_choices > a').click(function() {
 	$("#pod_choices a").removeClass('active');
     $(this).addClass('active');
+	$("#pod_storage").val($(this).val())
 });
 </script>
 {% endblock %}

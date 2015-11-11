@@ -14,12 +14,18 @@
 			<li>
 				<a class="active" href="/dashboard/home">Home</a>
 			</li>
-			<li>
-				<a href="/dashboard/transactions">Transactions</a>
-			</li>
-			<li>
-				<a href="/dashboard/results/1">Results</a>
-			</li>
+
+            <li data-toggle="collapse" data-target="#t-side-list"> <span>
+                    <a href="#">Transactions</a>
+            </span>
+                <ul class="nav collapse" id="t-side-list">
+                    <li><a href="/dashboard/transactions" title="settings">Overview</a>
+                    </li>
+                    <li><a href="/dashboard/transaction/1" title="Edit user accounts">Details</a>
+                    </li>
+                </ul>
+            </li>
+
 			<li>
 				<a href="/dashboard/services">Services</a>
 			</li>

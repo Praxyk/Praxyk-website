@@ -21,10 +21,10 @@ function make_request(service, token) {
         var model = ""
         $('#pod_choices a').each(function () {
             if ($(this).hasClass('active')) {
-                model = $(this).val()
+                model = $(this).attr('val')
             }
         });
-        do_pod_ocr(token, files, name, $("#upload_progress"), function(result) {
+        do_pod(model, token, files, name, $("#upload_progress"), function(result) {
             $("#upload_success").removeClass("hidden")
             $("#upload_failure").addClass("hidden")
             var json = $.parseJSON(result);
@@ -40,7 +40,7 @@ function make_request(service, token) {
 }
 
 
-function do_pod_ocr(token,input, name, progress,callback){
+function do_pod(model, token,input, name, progress,callback){
 	 
 	//get the data ready
 	var ocr_data = new FormData();
@@ -50,7 +50,7 @@ function do_pod_ocr(token,input, name, progress,callback){
 	}
 	
 	//call api
-	var result = api_call(pod_api_url+"ocr/?token="+token+"&name="+name, "POST",ocr_data,null,progress,function(result) {
+	var result = api_call(pod_api_url+model+"/?token="+token+"&name="+name, "POST",ocr_data,null,progress,function(result) {
 		callback(result)
     });
 	

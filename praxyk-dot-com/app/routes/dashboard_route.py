@@ -133,6 +133,10 @@ def transaction_tab(id):
     navbar = get_dashboard_navbar()
     sidebar = get_sidebar()
     transaction = get_transaction(id)
+    if not transaction :
+        transaction = get_closest_transaction(id)
+    if not transaction :
+        return redirect(url_for('dashboard_route.transactions_tab'))
     transactions = get_transactions(paginated=False)
     index = 0
     for x in range(0, len(transactions)) :
@@ -152,7 +156,7 @@ def transaction_tab(id):
     else: 
         ingress_str = "{0:.2f}".format(transaction['size_total_KB'])+" KB"
 
-    results = get_results(id, page=1, page_size=25)
+    results = get_results(transaction['trans_id'], page=1, page_size=25)
     page = results.get('page') if results else {}
     res_list = page.get('results', []) if page else []
     result_cards = [render_result_card(r) for r in res_list]
@@ -208,6 +212,25 @@ def services_tab():
                            email=session['email'],
                            navbar=navbar,
                            sidebar=sidebar)
+
+
+def get_closest_transaction(trans_id) :
+    transactions = get_transactions(paginated=False)
+    
+    return get_closest_helper(transactions)
+
+def get_closest_helper(transactions) :
+    if not transactions : return {}
+    size = len(transactions)
+    if size == 1 : return transactions[0]
+    mid = size/2
+    tid = transactions[mid]['trans_id']
+    if int(tid) == trans_id :
+        return get_transaction(trans_id)
+    elif int(tid) > trans_id :
+        return get_closest_helper(transactions[mid:])
+    else :
+        return get_closest_helper(transactions[:mid])
 
 
 def get_transaction(trans_id) :
