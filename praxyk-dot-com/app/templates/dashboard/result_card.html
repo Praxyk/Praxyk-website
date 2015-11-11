@@ -1,0 +1,104 @@
+<div class="card table-responsive" style="y-overflow:scroll">
+        {% if result.status == "finished": %}
+            <div class="cardtab centered col-md-2 col-lg-1 col-sm-2" >
+                <p><i class="fa fa-check fa-3x" style="color:#1F5C1C" ></i></p>
+        {% elif result.status == "failed": %}
+            <div class="cardtab centered col-md-2 col-lg-1 col-sm-2">
+                <p><i class="fa fa-ban fa-3x" style="color:#7D2529"></i></p>
+        {% elif result.status in ['active', 'new'] : %}
+            <div class="cardtab centered col-md-2 col-lg-1 col-sm-2" >
+                <p><i class="fa fa-spinner fa-spin fa-3x" style="color:#37474f"></i></p>
+        {% endif %}
+    </div>
+    
+
+    <div class="col-md-11 col-lg-11 col-sm-10">
+        <div class="cardtitle">
+            <div class="row">
+                <div class="col-md-2 col-lg-2 col-sm-2">
+                    <div><h5 style="text-align:left"> #{{ result.item_number }} </h5></div>
+                </div>
+
+                <div class="col-md-8 col-lg-8 col-sm-8" >
+                    <div><h5 style="text-align:center"> "{{ result.item_name }}"  </h5></div>
+                </div>
+            </div>
+        </div>
+
+    <div class="cardbody" style="text-align:left">
+        <div class="row">
+            <div class="col-md-6 col-lg-6 col-sm-6">
+              <ul class="list-unstyled">
+                <li>
+                    <div class="col-md-6 col-lg-6 col-sm-6">
+                        Created : 
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-6">
+                        {{ result.created_at }}
+                    </div>
+                </li>
+                <li>
+                    <div class="col-md-6 col-lg-6 col-sm-6">
+                        Finished : 
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-6">
+                    {% if result.finished_at %}
+                        {{ result.finished_at}}
+                    {% else %}
+                        N/A
+                     {% endif %}
+                    </div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-md-6 col-lg-6 col-sm-6">
+              <ul class="list-unstyled">
+                <li>
+                    <div class="col-md-6 col-lg-6 col-sm-6">
+                        Created : 
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-6">
+                        {{ result.created_at }}
+                    </div>
+                </li>
+                <li>
+                    <div class="col-md-6 col-lg-6 col-sm-6">
+                        Finished : 
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-6">
+                    {% if result.finished_at %}
+                        {{ result.finished_at}}
+                    {% else %}
+                        N/A
+                     {% endif %}
+                    </div>
+                </li>
+              </ul>
+            </div>
+            </div> <!-- end row -->
+
+            <div class="col-md-12 col-lg-12 col-sm-12">
+            <br>
+
+            <div class="nav collapse in" id="predictions-list{{ result.item_number }}">
+                <ul class="list-unstyled">
+                {% for res in result.prediction %}
+                <div class="row">
+                    <li>
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                        {{ res }}
+                    </div>
+                    <div class="col-sm-8 col-md-8 col-lg-8">
+                        {{ result.prediction[res] }}
+                    </div>
+                    </li>
+                </div>
+                {% endfor %}
+                    </ul>
+            </div>
+            </div>
+
+        </div> <!-- end cardbody -->
+    </div> <!-- end col -->
+  </div> <!-- end card -->

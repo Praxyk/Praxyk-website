@@ -1,3 +1,5 @@
+<head> 
+</head>
 {% extends "dashboard/dashboard_base.html" %}
 
 {% block sidebar %}
@@ -14,44 +16,121 @@
     <br>
     <div class="col-md-12 col-sm-12 col-lg-12">
 		  <h2 style="text-align:center"> 
-			Services - <small> Learn From Your Data </small>
+			Praxyk Services 
 		  </h2>
     </div>
 
+    <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
     <div class="card">
     <div class='cardtitle'>
+        <div class="row">
         <h5 style="text-align:center" >Optical Chacter Recognition</h5>
+        </div>
     </div>
     <div class="cardbody">
-        <p>Optical Character Recognition is a Machine Learning model that can detect and extract text that is present in a given image.</p>
-        <p> It works as follow : </p>
-        <ul>
-        <li> Upload of Set of Images to Perform OCR on.</li>
-        <li> We run each of the images through our OCR model and extract the text present.</li>
-        <li> We return to you a string for each image containing our best guess as to the text present in the images you submitted. </li>
-        </p>
-        <div class="btn btn-primary">Create new OCR Request</div>
+        <div class="row">
+            <div class="col-md-6 col-sm-12 col-lg-12">
+              <p>Optical Character Recognition is a Machine Learning model that can detect and extract text that is present in a given image.</p>
+            </div>
+        </div>
+    </div>
     </div>
     </div>
 
+    <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
     <div class="card">
     <div class='cardtitle'>
+        <div class="row">
         <h5 style="text-align:center" >Face Detection</h5>
+        </div>
     </div>
     <div class="cardbody">
-        <div class="btn btn-primary">Create new Facial Detection Request</div>
+        <div class="row">
+            <div class="col-md-6 col-sm-12 col-lg-12">
+              <p>Optical Character Recognition is a Machine Learning model that can detect and extract text that is present in a given image.</p>
+            </div>
+        </div>
+    </div>
     </div>
     </div>
 
 
+    <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
     <div class="card">
     <div class='cardtitle'>
+        <div class="row">
         <h5 style="text-align:center" >Spam Classification</h5>
+        </div>
     </div>
     <div class="cardbody">
-        <div class="btn btn-primary">Create new Bayes-Spam Request</div>
+        <div class="row">
+            <div class="col-md-6 col-sm-12 col-lg-12">
+              <p>Optical Character Recognition is a Machine Learning model that can detect and extract text that is present in a given image.</p>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+
+
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+    <div class="card" style="overflow: visible">
+    <div class='cardtitle'>
+        <div class="row">
+        <h5 style="text-align:center" >Upload Files</h5>
+        </div>
+    </div>
+    <div class="cardbody" style="overflow: visible">
+        <div class="row">
+
+			<div style="overflow:visible" class="col-md-4 col-sm-4 col-lg-4">
+				<div class="col-md-12 col-sm-12 col-lg-12">
+					<label for="pod_name">Transaction Name</label>
+					<input type="text" class="form-control" id="pod_name" />
+					<br>
+				</div>
+				<div class="col-md-12 col-sm-12 col-lg-12">
+					<label for="pod_choices">Choose a Model</label>
+					<div class="list-group" id="pod_choices">
+					  <a href="#" val="ocr" class="list-group-item active"> OCR</a>
+					  <a href="#" val="face_detect" class="list-group-item">Facial Detection</a>
+					  <a href="#" val="bayes_spam" class="list-group-item">Bayes-Spam Detection</a>
+					</div>
+				</div>
+				<hr>
+				<div class="col-md-12 col-sm-12 col-lg-12">
+					<div onClick="make_request('pod', '{{ token }}')" style="width:100%" class="btn btn-success">Make Request</div>
+				</div>
+			</div>
+
+            <div class="col-md-8 col-sm-8 col-lg-8">
+				<div class="col-md-12 col-sm-12 col-lg-12">
+					<div id="upload_success" class="hidden alert alert-success"> 
+						Uploads Success! 
+						<a id="upload_success_btn" href="#"><div class="btn btn-info"> View Transaction </div></a>
+					</div>
+					<div id="upload_failure" class="hidden alert alert-danger"></div>
+					<br>
+					<label class="control-label">Choose Files</label>
+					<input id="pod_input" type="file" class="file" multiple="true" data-show-upload="false" data-show-caption="true">
+				</div>
+            </div>
+
+            </div>
+        </div>
+    </div>
     </div>
     </div>
 
     </div>
+
+<script src="/static/js/scripts/praxyk.js"></script> 
+
+<script>
+$('#pod_choices > a').click(function() {
+	$("#pod_choices a").removeClass('active');
+    $(this).addClass('active');
+});
+</script>
 {% endblock %}

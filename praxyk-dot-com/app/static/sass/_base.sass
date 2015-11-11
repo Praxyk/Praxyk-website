@@ -2,6 +2,8 @@
 
 $colorWhite: #F5f5f5
 $colorWhite: #FFFFFF
+$colorRed: #7D2529
+$colorGreen: #1F5C1C
 $colorDarkBlue: #37474f
 $colorLightBlue: #78909C
 $colorLightBlue2: #5D879B
@@ -22,195 +24,206 @@ $maxWidthDashboard: 1900px
 
 
 body  
-    background: $colorOffWhite
-    font-family: $open-sans
-    font-family: $karla
-    font-weight: normal
-    height: 100%
-    overflow: hidden
+  background: $colorOffWhite
+  font-family: $open-sans
+  font-family: $karla
+  font-weight: normal
+  height: 100%
+  overflow: hidden
 
 p 
-    color: $colorDarkBlue
-    font-family: $roboto-slab
-    font-family: $karla
-    font-weight: normal
+  color: $colorDarkBlue
+  font-family: $roboto-slab
+  font-family: $karla
+  font-weight: normal
 
 
 .jumbotron
-    background-color: $colorWhite
-    padding: 20px
-    margin: 40px
-    margin-top: 80px
-    margin-bottom: 60px
-    h1
-        font-size: 67px
-    h2
-        font-size: 52px
-    p
-        font-size: 16px
+  background-color: $colorWhite
+  padding: 20px
+  margin: 40px
+  margin-top: 80px
+  margin-bottom: 60px
+  h1
+    font-size: 67px
+  h2
+    font-size: 52px
+  p
+    font-size: 16px
 
-    .panel
-        h1
-            font-size: 50px
-        h2
-            font-size: 42px
-        p
-            font-size: 14px
-            padding: 15px
+  .panel
+    h1
+      font-size: 50px
+    h2
+      font-size: 42px
+    p
+      font-size: 14px
+      padding: 15px
 
 .row
-    overflow: hidden
+  overflow: hidden
 
 .card
-    overflow-y: auto
-    overflow-x: hidden
-    background-color: $colorWhite
-    border: solid 1px $colorLightGray
-    border-radius: 5px
-    padding-top: 0px
-    margin: 20px
-    margin-top: 5px
-    margin-bottom: 5px
-    margin-right: -5px
-    margin-left: -5px
+  overflow-y: auto
+  overflow-x: hidden
+  background-color: $colorWhite
+  border: solid 1px $colorLightGray
+  border-radius: 5px
+  padding-top: 0px
+  margin: 20px
+  margin-top: 5px
+  margin-bottom: 5px
+  margin-right: -5px
+  margin-left: -5px
+  h1
+    font-size: 67px
+  h2
+    font-size: 52px
+  p
+    font-size: 16px
+
+  .cardtitle
+    text-align: left
+    border-bottom: solid 1px $colorLightGray
+    padding: 10px
+    padding-top: 5px
+    padding-bottom: 5px
     h1
-        font-size: 67px
+      font-size: 50px
+      padding-top: 3px
+      padding-bottom: 3px
+      margin-bottom: 3px
+      margin-top: 3px
     h2
-        font-size: 52px
+      font-size: 40px
+      padding-top: 3px
+      padding-bottom: 3px
+      margin-bottom: 3px
+      margin-top: 3px
+    h3
+      font-size: 32px
+      text-align: center
+      padding-top: 3px
+      padding-bottom: 3px
+      margin-bottom: 3px
+      margin-top: 3px
+    h4
+      font-size: 24px
+      text-align: center
+      padding-top: 3px
+      padding-bottom: 3px
+      margin-bottom: 3px
+      margin-top: 3px
+    h5
+      font-size: 16px
+      text-align: center
+      padding-top: 3px
+      padding-bottom: 3px
+      margin-bottom: 3px
+      margin-top: 3px
+
+  .cardbody
+    padding: 10px
+    h1
+      font-size: 50px
+      padding-top: 3px
+      padding-bottom: 3px
+      margin-top: 3px
+    h2
+      font-size: 40px
+      padding-top: 3px
+      padding-bottom: 3px
+      margin-top: 3px
+    h3
+      font-size: 32px
+      text-align: center
+      padding-top: 3px
+      padding-bottom: 3px
+      margin-top: 3px
+    h4
+      font-size: 24px
+      text-align: center
+      padding-top: 3px
+      padding-bottom: 3px
+      margin-top: 3px
+    h5
+      font-size: 16px
+      text-align: center
+      padding-top: 3px
+      padding-bottom: 3px
+      margin-top: 3px
     p
-        font-size: 16px
+      font-size: 14px
+      padding: 15px
 
-    .cardtitle
-        text-align: left
-        border-bottom: solid 1px $colorLightGray
-        padding: 10px
-        padding-top: 5px
-        padding-bottom: 5px
-        h1
-            font-size: 50px
-            padding-top: 3px
-            padding-bottom: 3px
-            margin-bottom: 3px
-            margin-top: 3px
-        h2
-            font-size: 40px
-            padding-top: 3px
-            padding-bottom: 3px
-            margin-bottom: 3px
-            margin-top: 3px
-        h3
-            font-size: 32px
-            text-align: center
-            padding-top: 3px
-            padding-bottom: 3px
-            margin-bottom: 3px
-            margin-top: 3px
-        h4
-            font-size: 24px
-            text-align: center
-            padding-top: 3px
-            padding-bottom: 3px
-            margin-bottom: 3px
-            margin-top: 3px
-        h5
-            font-size: 16px
-            text-align: center
-            padding-top: 3px
-            padding-bottom: 3px
-            margin-bottom: 3px
-            margin-top: 3px
+  .cardtab
+    text-align: center
+    background-color: $colorWhite
+    max-height: 100%
+    min-height: 120px
+    min-width: 50px
+    border: 0
+    padding: 7px
+    margin: 0px
 
-    .cardbody
-        padding: 10px
-        h1
-            font-size: 50px
-            padding-top: 3px
-            padding-bottom: 3px
-            margin-top: 3px
-        h2
-            font-size: 40px
-            padding-top: 3px
-            padding-bottom: 3px
-            margin-top: 3px
-        h3
-            font-size: 32px
-            text-align: center
-            padding-top: 3px
-            padding-bottom: 3px
-            margin-top: 3px
-        h4
-            font-size: 24px
-            text-align: center
-            padding-top: 3px
-            padding-bottom: 3px
-            margin-top: 3px
-        h5
-            font-size: 16px
-            text-align: center
-            padding-top: 3px
-            padding-bottom: 3px
-            margin-top: 3px
-        p
-            font-size: 14px
-            padding: 15px
 
 
 .container
-    .row
-        display: -webkit-box
-        display: -webkit-flex
-        display: -ms-flexbox
-        display:         flex
+  .row
+    display: -webkit-box
+    display: -webkit-flex
+    display: -ms-flexbox
+    display:     flex
 
 .panel
-    .panel-heading
-        h3
-            padding-top: 0px
-            padding-bottom: 0px
-            margin: 0px
-    .panel-body
-        overflow-y: auto
-        padding: 0px
+  .panel-heading
+    h3
+      padding-top: 0px
+      padding-bottom: 0px
+      margin: 0px
+  .panel-body
+    overflow-y: auto
+    padding: 0px
 
 
 .box
-    border: solid 1px $colorLightBlue
-    border-radius: 5px
-    margin: 10px
+  border: solid 1px $colorLightBlue
+  border-radius: 5px
+  margin: 10px
 
-    .table
-        margin-bottom: 0px
+  .table
+    margin-bottom: 0px
 
 table
-    max-height: 200px
-    text-align: center
-    font-size: 14px
+  max-height: 200px
+  text-align: center
+  font-size: 14px
 
-    thead
-        tr
-            th
-                text-align: center
-                font-size: 15px
-    tbody
-        tr
-            td
-                font-size: 13px
+  thead
+    tr
+      th
+        text-align: center
+        font-size: 15px
+  tbody
+    tr
+      td
+        font-size: 13px
 
 
 .table
-    max-height: 200px
-    text-align: center
+  max-height: 200px
+  text-align: center
 
-    thead
-        tr
-            th
-                text-align: center
-                padding-left: 15px
-                padding-right: 15px
-    tbody
-        tr
-            td
-                padding-left: 15px
-                padding-right: 15px
+  thead
+    tr
+      th
+        text-align: center
+        padding-left: 15px
+        padding-right: 15px
+  tbody
+    tr
+      td
+        padding-left: 15px
+        padding-right: 15px
 
 

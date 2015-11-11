@@ -13,10 +13,23 @@
 {% block content %}
     <div class="col-sm-offset-2 col-md-offset-1 col-lg-offset-1 col-sm-10 col-md-10 col-lg-10">
     <br>
-        <div><h2 style="text-align:center"> Account Overview </h2></div>
+        <div><h1 style="text-align:center"> Praxyk Dashboard</h1></div>
           <div class="row">
+            {% if not all_transactions %}
+                <div class="col-md-12 col-lg-12 col-sm-12">
+                <div class="jumbotron">
+                    <div class="row">
+                        <h3 style="text-align:center"> You don't have any transactions to show! </h3>
+                        <h4 style="text-align:center"> After you make your first request to a Praxyk service, this page will be filled with data about your account and request history. </h4>
+                        </div> <!-- end row -->
+                    </div> <!-- end cardbody -->
+                </div> <!-- end col -->
+              </div> <!-- end card -->
 
-			<div class="col-md-8 col-lg-8 col-sm-8">
+
+              {% else %}
+
+			<div class="col-md-8 col-lg-8 col-sm-12">
 				<div class="col-md-6 col-lg-6 col-sm-6">
 				  <div class="card">
 					  <div class="cardtitle">
@@ -40,46 +53,14 @@
 				</div>
 
 				<div class="col-md-12 col-lg-12 col-sm-12">
-				  <div class="card">
-					  <div class="cardtitle">
-						<h5 style="text-align:center" >Last Transaction</h5>
-					  </div>
-						<table data-toggle="table" class="table table-condensed table-striped table-hover">
-						  <thead>
-							<tr>
-								<th data-field="id">ID</th>
-								<th data-field="name">Status</th>
-								<th data-field="service">Service</th>
-								<th data-field="model">Model</th>
-								<th data-field="price">Price</th>
-								<th data-field="size_total_KB">Size (KB)</th>
-								<th data-field="uploaded">Items</th>
-								<th data-field="links">More Info</th>
-							</tr>
-						  </thead>
-								
-							{% for transaction in [all_transactions[0]] %}
-							<tr>	
-								<td><strong>{{ transaction.trans_id }}</strong></td>
-								<td>{{ transaction.status }}</td>
-								<td>{{ transaction.service }}</td>
-								<td>{{ transaction.model }}</td>
-								<td>$0.00</td>
-								<td>{{ transaction.size_total_KB }}</td>
-								<td>{{ transaction.uploads_success }}</td>
-								<td><a href="/dashboard/transaction/{{ transaction.trans_id }}" class="btn btn-default"> Full Info </a>
-									<a href="/dashboard/results/{{ transaction.trans_id }}" class="btn btn-default"> Results </a></td>
-							</tr>
-							{% endfor %}
-						</table>
-					</div>
-				</div>
-				</div>
+                    {{ trans_card|safe }}
+                </div>
+            </div>
 
 
 
 
-            <div class="col-md-4 col-lg-4 col-sm-4">
+            <div class="col-md-4 col-lg-4 col-sm-12">
 			 <div class="col-md-12 col-lg-12 col-sm-12">
               <div class="card">
                   <div class="cardtitle">
@@ -97,7 +78,7 @@
 
 
           <div class="row">
-            <div class="col-md-8 col-lg-8 col-sm-8">
+            <div class="col-md-8 col-lg-8 col-sm-12">
 			 <div class="col-md-12 col-lg-12 col-sm-12">
               <div class="card">
                   <div class="cardtitle">
@@ -110,7 +91,7 @@
             </div>
             </div>
 
-            <div class="col-md-4 col-lg-4 col-sm-4">
+            <div class="col-md-4 col-lg-4 col-sm-12">
 			 <div class="col-md-12 col-lg-12 col-sm-12">
               <div class="card">
                   <div class="cardtitle">
@@ -136,6 +117,7 @@
                   </div>
                 </div>
             </div>
+            {% endif %}
         </div>
     </div>
 </div>
@@ -143,6 +125,12 @@
 <script src="/static/js/scripts/graphs.js"></script>
 <script> transaction_status_pie({{ state_counts|safe }}, {{ state_names|safe }});
 		 transaction_status_bar({{ date_counts|safe }}, {{ dates|safe }});
+
+ function OnResize() {
+     transaction_status_pie({{ state_counts|safe }}, {{ state_names|safe }});
+     transaction_status_bar({{ date_counts|safe }}, {{ dates|safe }});
+  }
+
 </script>
  
 		

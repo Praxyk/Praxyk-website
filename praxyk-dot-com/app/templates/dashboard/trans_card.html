@@ -1,0 +1,81 @@
+
+   <div class="card table-responsive" style="min-height: 120px; max-height:150px">
+        {% if transaction.status == "finished": %}
+            <div class="cardtab centered col-md-2 col-lg-1 col-sm-2" style="background-color:#1F5C1C" >
+                <p><i class="fa fa-check fa-3x" style="color:white" ></i></p>
+        {% elif transaction.status == "failed": %}
+            <div class="cardtab centered col-md-2 col-lg-1 col-sm-2" style="background-color:#7D2529" >
+                <p><i class="fa fa-ban fa-3x" style="color:white"></i></p>
+        {% elif transaction.status in ['active', 'new'] : %}
+            <div class="cardtab centered col-md-2 col-lg-1 col-sm-2" style="background-color: #37474f" >
+                <p><i class="fa fa-spinner fa-spin fa-3x" style="color:white"></i></p>
+        {% endif %}
+            <a href="/dashboard/transaction/{{ transaction.trans_id }}" class="btn btn-default"> View </a>
+    </div>
+    
+
+    <div class="col-md-11 col-lg-11 col-sm-10">
+        <div class="cardtitle">
+            <div class="row">
+                <div class="col-md-2 col-lg-2 col-sm-2">
+                    <div><h5 style="text-align:left"> #{{ transaction.trans_id}} </h5></div>
+                </div>
+
+                <div class="col-md-8 col-lg-8 col-sm-8" >
+                    <div><h5 style="text-align:center"> "{{ transaction.name }}"  </h5></div>
+                </div>
+            </div>
+        </div>
+
+    <div class="cardbody" style="text-align:left">
+        <div class="row">
+            <div class="col-md-6 col-lg-6 col-sm-6">
+              <ul class="list-unstyled">
+                <li>
+                    <div class="col-md-6 col-lg-6 col-sm-6">
+                        Created : 
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-6">
+                        {{ transaction.created_at }}
+                    </div>
+                </li>
+                <li>
+                    <div class="col-md-6 col-lg-6 col-sm-6">
+                        Finished : 
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-6">
+                    {% if transaction.finished_at %}
+                        {{ transaction.finished_at}}
+                    {% else %}
+                        N/A
+                     {% endif %}
+                    </div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-md-6 col-lg-6 col-sm-6">
+              <ul class="list-unstyled">
+                <li>
+                    <div class="col-md-6 col-lg-6 col-sm-6">
+                        Files/Total Size : 
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-6">
+                        {{ transaction.uploads_success }} / {{ transaction.size_total_KB}} KB
+                    </div>
+                </li>
+                <li>
+                    <div class="col-md-6 col-lg-6 col-sm-6">
+                        Service/Model :
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-6">
+                        {{ transaction.service }}/{{ transaction.model }}
+                    </div>
+                </li>
+              </ul>
+            </div>
+
+            </div> <!-- end row -->
+        </div> <!-- end cardbody -->
+    </div> <!-- end col -->
+  </div> <!-- end card -->

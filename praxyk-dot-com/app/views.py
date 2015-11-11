@@ -42,7 +42,7 @@ def documentation_api(name):
         user = {'name' : session['user'], 'email' : session['email']}
     with open('app/templates/praxyk-wiki-html/Praxyk-API.html', 'r') as fh:
         page= fh.read()
-    return render_template('documentation_api.html', navbar=navbar, user=user, page=page)
+    return render_template('documentation/documentation_api.html', navbar=navbar, user=user, page=page)
 
 
 @app.route('/services')

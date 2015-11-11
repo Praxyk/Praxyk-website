@@ -14,21 +14,23 @@ import dateutil.parser
 from flask import Blueprint, render_template, abort
 from jinja2 import TemplateNotFound
 
-cost_per_KB = 0.005
+cost_per_KB = 0.0001
 
-dashboard_route = Blueprint('dashboard_route', __name__,
-                                template_folder='templates/dashboard')
+dashboard_route = Blueprint('dashboard_route', __name__, template_folder='templates/dashboard')
 
 
 @dashboard_route.route('/dashboard', methods=['GET'])
 def dashboard():
     error = None
+    ingress_str = "0.00 KB"
+    dates4 = []
+    date_counts = []
     if not session.get('token') or not session.get('user') :
         return redirect(url_for('users_route.login_page', _external=True))
     navbar = get_dashboard_navbar()
     sidebar = get_sidebar()
     transactions = get_transactions(paginated=False)
-    num_transactions = len(transactions)
+    num_transactions = len([] if not transactions else transactions)
     commands = set([trans['command_url'] for trans in transactions])
     command_counts = {url : 0 for url in commands}
     for trans in transactions :
@@ -42,30 +44,40 @@ def dashboard():
         ingress_str = "{0:.2f}".format(total_ingress)+" KB"
 
     cost = "{0:.2f}".format(total_ingress*cost_per_KB)
-    state_names = ['active', 'finished', 'failed']
+    state_names = ['active', 'canceled', 'finished', 'failed']
     state_counts = [len([x for x in transactions if x['status'] == state]) for state in state_names]
+    trans_card = ""
 
-    print(transactions[0]['created_at'])
-    dates = list(set([x['created_at'].split("T")[0] for x in transactions]))
-    dates.sort()
-    date_map = { dates[x]:x for x in range(0, len(dates)) }
-    date_counts = []
-    for x in dates :
-        date_counts.append(0)
-    for x in transactions :
-        date_counts[date_map[x['created_at'].split("T")[0]]] += 1
-    
-    print(date_counts)
-    print(dates)
 
-    dates2 = list(set([dateutil.parser.parse(x['created_at'].split("T")[0]) for x in transactions]))
-    dates2.sort()
-    print(dates2)
+    if num_transactions > 0:
 
-    dates3 = []
-    for x in range((dt.datetime.now()-dates2[0]).days):
-        dates3.append(dates2[0]+timedelta(days=x)) 
-    print(dates3)
+        trans_card = render_trans_card(transactions[0])
+        dates = list(set([x['created_at'].split("T")[0] for x in transactions]))
+        dates.sort()
+        date_map = { dates[x]:x for x in range(0, len(dates)) }
+
+        
+        dates2 = list(set([dateutil.parser.parse(x['created_at'].split("T")[0]) for x in transactions]))
+        dates2.sort()
+
+        dates3 = []
+        if ((dt.datetime.now()-dates2[0]).days) < 7 :
+            for x in range(0, 7):
+                dates3.append(dt.datetime.now()-timedelta(days=x))
+                # dates3.reverse()
+        else :
+            for x in range(0, (dt.datetime.now()-dates2[0]).days) :
+                dates3.append(dates2[0]+timedelta(days=x)) 
+
+        for x in dates3 :
+            date_counts.append(0)
+        for x in transactions :
+            try :
+                date_counts[date_map[x['created_at'].split("T")[0]]] += 1
+            except :
+                continue
+
+        dates4 = [str(x) for x in dates3]
 
     return render_template('/dashboard/dashboard_home.html',
                            token=session['token'],
@@ -78,10 +90,11 @@ def dashboard():
                            command_counts=command_counts,
                            total_ingress=total_ingress,
                            ingress_str=ingress_str,
+                           trans_card = trans_card,
                            cost_total=cost,
                            state_counts=state_counts,
                            state_names=state_names,
-                           dates = dates,
+                           dates = dates4,
                            date_counts = date_counts,
                            sidebar=sidebar)
 
@@ -97,31 +110,8 @@ def transactions_tab():
     navbar = get_dashboard_navbar()
     sidebar = get_sidebar()
     transactions = get_transactions(paginated=False)
+    trans_cards = [render_trans_card(t) for t in transactions]
     num_transactions = len(transactions)
-    commands = set([trans['command_url'] for trans in transactions])
-    command_counts = {url : 0 for url in commands}
-    for trans in transactions :
-        command_counts[trans['command_url']] += 1
-    total_ingress = 0
-    for trans in transactions :
-        total_ingress += trans['size_total_KB']
-    if total_ingress > 2000 : # > 2MB
-        ingress_str = "{0:.2f}".format(total_ingress/1000.0)+" MB"
-    else: 
-        ingress_str = "{0:.2f}".format(total_ingress)+" KB"
-
-    cost = "{0:.2f}".format(total_ingress*cost_per_KB)
-    state_names = ['active', 'finished', 'failed']
-    state_counts = [len([x for x in transactions if x['status'] == state]) for state in state_names]
-
-    dates = list(set([x['created_at'].split("T")[0] for x in transactions]))
-    dates.sort()
-    date_map = { dates[x]:x for x in range(0, len(dates)) }
-    date_counts = []
-    for x in dates :
-        date_counts.append(0)
-    for x in transactions :
-        date_counts[date_map[x['created_at'].split("T")[0]]] += 1
     
     return render_template('/dashboard/dashboard_transactions.html',
                            token=session['token'],
@@ -131,31 +121,7 @@ def transactions_tab():
                            transactions=transactions[-10:],
                            all_transactions=transactions,
                            num_transactions=num_transactions,
-                           command_counts=command_counts,
-                           total_ingress=total_ingress,
-                           ingress_str=ingress_str,
-                           cost_total=cost,
-                           state_counts=state_counts,
-                           state_names=state_names,
-                           dates = dates,
-                           date_counts = date_counts,
-                           sidebar=sidebar)
-
-
-
-
-    error = None
-    if not session.get('token') or not session.get('user') :
-        return redirect(url_for('users_route.login_page', _external=True))
-    navbar = get_dashboard_navbar()
-    sidebar = get_sidebar()
-    transactions = get_transactions(page=1, page_size=25)
-    return render_template('/dashboard/dashboard_transactions.html',
-                           token=session['token'],
-                           user=session['user'],
-                           email=session['email'],
-                           navbar=navbar,
-                           transactions=transactions,
+                           trans_cards = trans_cards,
                            sidebar=sidebar)
 
 
@@ -167,17 +133,43 @@ def transaction_tab(id):
     navbar = get_dashboard_navbar()
     sidebar = get_sidebar()
     transaction = get_transaction(id)
+    transactions = get_transactions(paginated=False)
+    index = 0
+    for x in range(0, len(transactions)) :
+        if transactions[x]['trans_id'] == str(id) :
+            index = x
+            print("Index Found : " + str(index) + " \n\n")
+            break
+    nxt = None if index <= 0 else index-1
+    prev = None if index >= len(transactions)-1 else index+1
+
+    nxt = transactions[nxt]['trans_id'] if nxt else None
+    prev = transactions[prev]['trans_id'] if prev else None
+
+    trans_card = render_trans_card(transaction)
     if transaction['size_total_KB'] > 2000 : # > 2MB
         ingress_str = "{0:.2f}".format(transaction['size_total_KB']/1000.0)+" MB"
     else: 
         ingress_str = "{0:.2f}".format(transaction['size_total_KB'])+" KB"
+
+    results = get_results(id, page=1, page_size=25)
+    page = results.get('page') if results else {}
+    res_list = page.get('results', []) if page else []
+    result_cards = [render_result_card(r) for r in res_list]
+    print(result_cards)
+
     return render_template('/dashboard/dashboard_transaction.html',
                            token=session['token'],
                            user=session['user'],
                            email=session['email'],
                            navbar=navbar,
                            transaction=transaction,
+                           trans_id = id,
+                           results = results,
+                           trans_card = trans_card,
+                           result_cards = result_cards,
                            ingress_str=ingress_str,
+                           prev=prev, nxt=nxt,
                            sidebar=sidebar)
 
 
@@ -300,3 +292,18 @@ def get_results(trans_id, paginated=True, page=1, page_size=15, model=None, serv
         response['results'] = results
 
     return response
+
+
+def render_trans_card(trans) :
+    try :
+        return render_template('dashboard/trans_card.html', user=session.get('user', None), transaction=trans)
+    except :
+        return ""
+
+
+def render_result_card(result) :
+    try :
+        print(result)
+        return render_template('dashboard/result_card.html', user=session.get('user', None), result=result)
+    except :
+        return ""
