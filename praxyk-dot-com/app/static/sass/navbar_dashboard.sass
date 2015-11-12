@@ -11,6 +11,8 @@ $navHeight        : 50px
 
 .navbar 
     min-height: $navHeight
+    z-index: 999999999
+    overflow-y: visible
     border-radius: 0px
     margin: 0px
     padding: 0px
@@ -31,6 +33,8 @@ $navHeight        : 50px
             color: $colordefault
             width: 75%
         .navbar-nav 
+            margin-top: 0px
+            margin-bottom: 0px
             > li 
                 > a 
                     color: $colordefault

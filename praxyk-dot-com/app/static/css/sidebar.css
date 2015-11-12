@@ -180,10 +180,9 @@ p {
   font-size: 14px;
   padding: 15px;
 }
-/* line 159, ../sass/_base.sass */
+/* line 160, ../sass/_base.sass */
 .card .cardtab {
   text-align: center;
-  background-color: #FFFFFF;
   max-height: 100%;
   min-height: 120px;
   min-width: 50px;
@@ -191,8 +190,18 @@ p {
   padding: 7px;
   margin: 0px;
 }
+/* line 169, ../sass/_base.sass */
+.card .cardtabtop {
+  text-align: center;
+  max-height: 40px;
+  min-height: 40px;
+  min-width: 50px;
+  border: 0;
+  padding: 7px;
+  margin: 0px;
+}
 
-/* line 172, ../sass/_base.sass */
+/* line 181, ../sass/_base.sass */
 .container .row {
   display: -webkit-box;
   display: -webkit-flex;
@@ -200,57 +209,57 @@ p {
   display: flex;
 }
 
-/* line 180, ../sass/_base.sass */
+/* line 189, ../sass/_base.sass */
 .panel .panel-heading h3 {
   padding-top: 0px;
   padding-bottom: 0px;
   margin: 0px;
 }
-/* line 184, ../sass/_base.sass */
+/* line 193, ../sass/_base.sass */
 .panel .panel-body {
   overflow-y: auto;
   padding: 0px;
 }
 
-/* line 189, ../sass/_base.sass */
+/* line 198, ../sass/_base.sass */
 .box {
   border: solid 1px #78909C;
   border-radius: 5px;
   margin: 10px;
 }
-/* line 194, ../sass/_base.sass */
+/* line 203, ../sass/_base.sass */
 .box .table {
   margin-bottom: 0px;
 }
 
-/* line 197, ../sass/_base.sass */
+/* line 206, ../sass/_base.sass */
 table {
   max-height: 200px;
   text-align: center;
   font-size: 14px;
 }
-/* line 204, ../sass/_base.sass */
+/* line 213, ../sass/_base.sass */
 table thead tr th {
   text-align: center;
   font-size: 15px;
 }
-/* line 209, ../sass/_base.sass */
+/* line 218, ../sass/_base.sass */
 table tbody tr td {
   font-size: 13px;
 }
 
-/* line 213, ../sass/_base.sass */
+/* line 222, ../sass/_base.sass */
 .table {
   max-height: 200px;
   text-align: center;
 }
-/* line 219, ../sass/_base.sass */
+/* line 228, ../sass/_base.sass */
 .table thead tr th {
   text-align: center;
   padding-left: 15px;
   padding-right: 15px;
 }
-/* line 225, ../sass/_base.sass */
+/* line 234, ../sass/_base.sass */
 .table tbody tr td {
   padding-left: 15px;
   padding-right: 15px;

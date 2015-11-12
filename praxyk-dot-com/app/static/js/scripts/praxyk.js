@@ -1,7 +1,7 @@
 //Praxyk JS Binding
 
 //api urls
-//var base_api_url= "http://api.praxyk.com/v1/";
+// var base_api_url= "http://api.praxyk.com/v1/";
 var base_api_url= "http://localhost:4001/v1/"  
 var pod_api_url = base_api_url + "pod/";
 var tlp_api_url = base_api_url + "tlp/";
@@ -10,13 +10,107 @@ var user_api_url = base_api_url + "users/";
 var transaction_api_url = base_api_url + "transactions/";
 var results_api_url = base_api_url + "results/";
 
+function push_trans(transaction, token) {
+    render_trans_card(transaction, function(html) {
+        $("#new_trans_card").prepend(html);
+        if(transaction.status == "active" || transaction.status == "new") {
+            trans_spin(transaction.trans_id, token, "card");
+        }
+        console.log(html);
+    })
+}
+
+function push_trans_button(transaction) {
+    render_trans_button(transaction, function(html) {
+        console.log("#new_trans_button");
+        $("#new_trans_button").append(html)
+        console.log(html)
+    })
+}
+
+
+function render_trans_card(transaction, callback) {
+    url = "/static/jstemplates/trans_card.html";
+    return render_trans(transaction, url, callback);
+}
+
+function render_trans_button(transaction, callback) {
+    url = "/static/jstemplates/trans_button.html";
+    return render_trans(transaction, url, callback);
+}
+
+function render_trans(transaction, url, callback) {
+    console.log(transaction)
+    console.error(url);
+    Handlebars.registerHelper('ifCond', function(v1, v2, options) {
+          if(v1 === v2) {
+                  return options.fn(this);
+                    }
+            return options.inverse(this);
+    });
+    $("#hidden-loader").load(url, function(result) {
+            console.log(result);
+            var template = Handlebars.compile(result);
+            var html    = template({transaction : transaction});
+            callback(html)
+            return html
+    });
+}
+
+function trans_spin(id, token, type) {
+
+    get_transaction(token, id, function(result) {
+         console.log(result)
+
+         var json = result //$.parseJSON(result);
+         console.log("Spin Again")
+
+        if(!json) {
+            return false;
+        }
+        if(json.transaction.status == "finished" || json.transaction.status == "failed" ) {
+            if(type=="button") {
+                render_trans_button(json.transaction, function(html) { 
+                    console.log("#"+id)
+                    //$("#new_trans_card").prepend(html)
+
+                    setTimeout(function (){
+                        $("#"+id).after(html);
+                        $("#"+id).remove()
+                        console.log("FINISHED!")
+                    }, 100);
+                })
+            }else if(type=="card") {
+                render_trans_card(json.transaction, function(html) { 
+                    console.log("#"+id)
+                    //$("#new_trans_card").prepend(html)
+
+                    setTimeout(function (){
+                        $("#"+id).after(html);
+                        $("#"+id).remove()
+                        console.log("FINISHED!")
+                    }, 100);
+                })
+            }
+            return true;
+        }
+
+        setTimeout(function (){
+            return trans_spin(id, token, type);
+        }, 100);
+
+    });
+
+}
+
 
 function make_request(service, token) {
 
     if(service != "pod") {
         return
     }else {
-        var files = $("#pod_input").prop("files");
+        var passed = true
+        var files = $("#pod-input").prop("files");
         var name = $("#pod_name").val()
         var model = ""
         $('#pod_choices a').each(function () {
@@ -24,14 +118,55 @@ function make_request(service, token) {
                 model = $(this).attr('val')
             }
         });
+
+        if(!files || files.length <= 0) {
+            passed=false
+            $("#upload-form-group").addClass("has-error");
+            $("#upload-form-group").removeClass("has-success");
+            $("#upload_success").addClass("hidden");
+            $("#upload_failure").removeClass("hidden");
+            $("#upload_failure").text("Please Submit At Lease 1 File");
+        }
+        if(!name) {
+            passed=false
+            $("#upload_success").addClass("hidden");
+            $("#upload_failure").removeClass("hidden");
+            $("#upload_failure").text("Please Name Your Transaction");
+            $("#main-form-group").removeClass("has-success");
+            $("#main-form-group").addClass("has-error");
+        }
+        if(!model) {
+            passed=false
+            $("#upload_success").addClass("hidden");
+            $("#upload_failure").removeClass("hidden");
+            $("#upload_failure").text("Please Select a Model");
+            $("#main-form-group").removeClass("has-success");
+            $("#main-form-group").addClass("has-error");
+        }   
+
+        if(!passed) {
+            return;
+        }
+
+        $("#main-form-group").removeClass("has-error");
+        $("#upload-form-group").removeClass("has-error");
+
         do_pod(model, token, files, name, $("#upload_progress"), function(result) {
-            $("#upload_success").removeClass("hidden")
-            $("#upload_failure").addClass("hidden")
             var json = $.parseJSON(result);
-            if (json.trans_id) {
-                $("#upload_success_btn").attr('href', '/dashboard/transaction/'+json.trans_id)
+            console.log(json)
+            if (json.transaction) {
+                // $("#upload_success").removeClass("hidden");
+                $("#upload_failure").addClass("hidden");
+                $("#upload_failure").addClass("hidden");
+                // $("#upload_success_btn").attr('href', '/dashboard/transaction/'+json.transaction.trans_id)
+                push_trans_button(json.transaction)
+                trans_spin(json.transaction.trans_id, token, "button")
+                $('.fileupload').fileupload(clear);
+
             }else {
-                $("#upload_success_btn").attr('href', '/dashboard/transaction/'+"1")
+                // $("#upload_success").addClass("hidden");
+                $("#upload_failure").removeClass("hidden");
+                $("#upload_failure").text("There Was an Error With Your Request.");
             }
 
         })
@@ -106,6 +241,14 @@ function get_user_info(token,userid,callback){
 		var json = $.parseJSON(result);
        return callback(json);
    });
+}
+
+function get_transaction(token,id,callback){
+	var url = transaction_api_url + id + "?token=" + token;
+	return api_call(url, "GET",null,null,null,function(result) {
+		var json = $.parseJSON(result);
+		return callback(json);
+	});
 }
 
 function get_all_transactions(token,userid,callback){

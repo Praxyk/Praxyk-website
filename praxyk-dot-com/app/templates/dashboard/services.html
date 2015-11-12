@@ -1,4 +1,6 @@
 <head> 
+<script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+<link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
 </head>
 {% extends "dashboard/dashboard_base.html" %}
 
@@ -12,7 +14,7 @@
 
 {% block content %}
 
-    <div class="col-sm-offset-2 col-md-offset-1 col-lg-offset-1 col-sm-10 col-md-10 col-lg-10">
+    <div class="col-lg-offset-1 col-sm-12 col-md-12 col-lg-10">
     <br>
     <div class="col-md-12 col-sm-12 col-lg-12">
 		  <h2 style="text-align:center"> 
@@ -29,7 +31,7 @@
     </div>
     <div class="cardbody">
         <div class="row">
-            <div class="col-md-6 col-sm-12 col-lg-12">
+            <div class="col-md-12 col-sm-12 col-lg-12">
               <p>Optical Character Recognition is a Machine Learning model that can detect and extract text that is present in a given image.</p>
             </div>
         </div>
@@ -46,7 +48,7 @@
     </div>
     <div class="cardbody">
         <div class="row">
-            <div class="col-md-6 col-sm-12 col-lg-12">
+            <div class="col-md-12 col-sm-12 col-lg-12">
               <p>Optical Character Recognition is a Machine Learning model that can detect and extract text that is present in a given image.</p>
             </div>
         </div>
@@ -64,14 +66,13 @@
     </div>
     <div class="cardbody">
         <div class="row">
-            <div class="col-md-6 col-sm-12 col-lg-12">
+            <div class="col-md-12 col-sm-12 col-lg-12">
               <p>Optical Character Recognition is a Machine Learning model that can detect and extract text that is present in a given image.</p>
             </div>
         </div>
     </div>
     </div>
     </div>
-
 
 
     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
@@ -83,8 +84,12 @@
     </div>
     <div class="cardbody" style="overflow: visible">
         <div class="row">
+        <div class="row">
+				<div id="new_trans_button" class="col-md-12 col-sm-12 col-lg-12"></div>
+		</div>
 
-			<div style="overflow:visible" class="col-md-4 col-sm-4 col-lg-4">
+			<div style="overflow:visible" class="col-md-12 col-sm-12 col-xs-12 col-lg-4">
+			<div class="form-group" id="#main-form-group">
 				<div class="col-md-12 col-sm-12 col-lg-12">
 					<label for="pod_name">Transaction Name</label>
 					<input type="text" class="form-control" id="pod_name" />
@@ -93,35 +98,52 @@
 				<div class="col-md-12 col-sm-12 col-lg-12">
 					<label for="pod_choices">Choose a Model</label>
 					<div class="list-group" id="pod_choices">
-					  <a href="#" val="ocr" class="list-group-item active"> OCR</a>
+					  <a href="#" val="ocr" class="list-group-item"> OCR</a>
 					  <a href="#" val="face_detect" class="list-group-item">Facial Detection</a>
 					  <a href="#" val="bayes_spam" class="list-group-item">Bayes-Spam Detection</a>
 					</div>
 					<div class="" val="ocr" id="pod_storage"></div>
 				</div>
 				<hr>
-				<div class="col-md-12 col-sm-12 col-lg-12">
+				<div class="col-md-12 col-sm-12 col-lg-12 hidden-sm hidden-xs hidden-md">
 					<div onClick="make_request('pod', '{{ token }}')" style="width:100%" class="btn btn-success">Make Request</div>
 				</div>
+				<hr>
+			</div>
 			</div>
 
-            <div class="col-md-8 col-sm-8 col-lg-8">
+            <div class="col-md-12 col-sm-12 col-xs-12 col-lg-8">
 				<div class="col-md-12 col-sm-12 col-lg-12">
 					<div id="upload_success" class="hidden alert alert-success"> 
-						Uploads Success! 
-						<a id="upload_success_btn" href="#"><div class="btn btn-info"> View Transaction </div></a>
+						<div class="row">
+						<div class="col-sm-6 col-xs-12 col-md-6 col-lg-8">
+							Uploads Success! 
+						</div>
+						<div class="col-sm-6 col-xs-12 col-md-6 col-lg-8">
+							<a id="upload_success_btn" href="#"><div class="btn btn-info"> View Transaction </div></a>
+						</div>
+						</div>
 					</div>
 					<div id="upload_failure" class="hidden alert alert-danger"></div>
 					<br>
-					<label class="control-label">Choose Files</label>
-					<input id="pod_input" type="file" class="file" multiple="true" data-show-upload="false" data-show-caption="true">
+					<div class="form-group" id="#upload-form-group">
+						<label class="control-label">Choose Files</label>
+						<input id="pod-input" type="file" class="file" multiple="true" data-show-upload="false" data-show-caption="true">
+					</div>
+				</div>
+				<div class="col-md-12 col-sm-12 col-lg-12 hidden-xl hidden-lg">
+					<hr>
+					<div onClick="make_request('pod', '{{ token }}')" style="width:100%" class="btn btn-success">Make Request</div>
 				</div>
             </div>
-
             </div>
         </div>
+		</div>
     </div>
-    </div>
+
+	<div id="new_trans_card" class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+	</div>
+
     </div>
 
     </div>
@@ -134,5 +156,7 @@ $('#pod_choices > a').click(function() {
     $(this).addClass('active');
 	$("#pod_storage").val($(this).val())
 });
+</script>
+<script>
 </script>
 {% endblock %}

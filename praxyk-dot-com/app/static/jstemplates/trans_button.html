@@ -1,0 +1,39 @@
+<html>
+    <div id="{{transaction.trans_id}}">
+    <div class="col-md-6 col-lg-4 col-sm-4 col-xs-6" style="padding:10px">
+      <a href="/dashboard/transaction/{{ transaction.trans_id }}">
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                {{#ifCond transaction.status "finished"}}
+                <span class="label label-success">
+                     #{{ transaction.trans_id}} 
+                     <i style="padding-right:10px;padding-left:10px"  class="fa fa-check-square"> </i> 
+                    | Model - ({{ transaction.model }})
+                </span>
+                {{/ifCond}}
+                {{#ifCond transaction.status "failed"}}
+                <span style="background-color:#7D2529" class="label label-warn"> 
+                    #{{ transaction.trans_id}} 
+                    <i style="padding-right:10px;padding-left:10px"  class="fa fa-exclamation-triangle"> </i>
+                    | Model - ({{ transaction.model }})
+                </span>
+                {{/ifCond}}
+                {{#ifCond transaction.status 'active'}}
+                <span style="background-color:#37474f" class="label label-info">  
+                    #{{ transaction.trans_id}} 
+                    <i style="padding-right:10px;padding-left:10px"  class="fa fa-cog fa-spin"> </i>
+                    | Model - ({{ transaction.model }})
+                </span>
+                {{/ifCond}}
+                {{#ifCond transaction.status 'new'}}
+                <span style="background-color:#37474f" class="label label-info">
+                    #{{ transaction.trans_id}} 
+                    <i style="padding-right:10px;padding-left:10px"  class="fa fa-spinner fa-spin"> </i>
+                    | Model - ({{ transaction.model }})
+                </span>
+                {{/ifCond}}
+            </div>
+
+   </a>
+</div> <!-- end col -->
+</div> <!-- end col -->
+</html>

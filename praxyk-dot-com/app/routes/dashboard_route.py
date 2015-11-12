@@ -30,6 +30,8 @@ def dashboard():
     navbar = get_dashboard_navbar()
     sidebar = get_sidebar()
     transactions = get_transactions(paginated=False)
+    for t in transactions :
+        t['finished_at'] = "" if not t['finished_at'] else t.get('finished_at')
     num_transactions = len([] if not transactions else transactions)
     commands = set([trans['command_url'] for trans in transactions])
     command_counts = {url : 0 for url in commands}
@@ -56,18 +58,24 @@ def dashboard():
         dates.sort()
         date_map = { dates[x]:x for x in range(0, len(dates)) }
 
+        print("\n\n\n" + str(date_map))
+
         
         dates2 = list(set([dateutil.parser.parse(x['created_at'].split("T")[0]) for x in transactions]))
         dates2.sort()
 
         dates3 = []
         if ((dt.datetime.now()-dates2[0]).days) < 7 :
-            for x in range(0, 7):
-                dates3.append(dt.datetime.now()-timedelta(days=x))
+            for x in range(1, 8):
+                dates3.append((dt.datetime.now()-timedelta(days=(7-x))).isoformat().split("T")[0])
                 # dates3.reverse()
         else :
             for x in range(0, (dt.datetime.now()-dates2[0]).days) :
-                dates3.append(dates2[0]+timedelta(days=x)) 
+                dates3.append(dates2[0]+timedelta(days=x).isoformat().split("T")[0]) 
+
+        date_map = { dates3[x]:x for x in range(0, len(dates3)) }
+
+        print("\n\n\n" + str(date_map))
 
         for x in dates3 :
             date_counts.append(0)

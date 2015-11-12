@@ -16,6 +16,8 @@
     <link rel="stylesheet" type="text/css" href="/static/css/fileinput.min.css">
     <script src="/static/js/scripts/canvas-to-blob.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="/static/js/scripts/fileinput.js"></script>
+    <script type="text/javascript" src="/static/js/scripts/handlebars.js"></script>
+
 
 	<!--  Plotly Stuff -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
@@ -48,18 +50,23 @@
     <link href="http://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet" type="text/css">
 
 
+    <script src="/static/js/scripts/graphs.js"></script>
+    <script src="/static/js/scripts/praxyk.js"></script>
+
     <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.5/js/bootstrap-select.min.js" type="text/javascript"></script>
 </head>
+
+<div class="navbar ">
+{% block navbar %}{% endblock %}
+</div>
+
 <body onLoad="OnLoad()" onresize="OnResize()">
-	<div class="navbar ">
-	{% block navbar %}{% endblock %}
-	</div>
 	<div id="wrapper">
 		{% block sidebar %}{% endblock %}
 			<div class="page-content-wrapper">
 				<div class="container-dashboard">
 					<div class="container-fluid">
-						<div id="sidebar-toggle" class="fixed hidden-md hidden-lg hidden-xl">
+						<div id="sidebar-toggle" class="fixed hidden-md hidden-lg hidden-xl hidden-sm">
                             <br>
 						<a href="#menu-toggle" id="menu-toggle-content"><i class="fa fa-bars fa-2x"></i></a>
 						</div>
@@ -73,37 +80,46 @@
 	<div class="footer">
 	{% block footer %}{% endblock %}
 	</div>
+    <div id="hidden-loader" class="hidden"></div>
 <!-- Menu Toggle Script -->
 <script src="/static/js/scripts/graphs.js"></script>
 <script> 
+function OnLoad() {
     transaction_status_pie({{ state_counts|safe }}, {{ state_names|safe }});
     transaction_status_bar({{ date_counts|safe }}, {{ dates|safe }});
+}
 
- function OnResize() {
+function OnResize() {
      transaction_status_pie({{ state_counts|safe }}, {{ state_names|safe }});
      transaction_status_bar({{ date_counts|safe }}, {{ dates|safe }});
   }
+window.resize = OnResize()
 
 </script>
 <script>
 $("#menu-toggle-inline").click(function(e) {
 	e.preventDefault();
 	$("#wrapper").toggleClass("toggled");
+    $("#sidebar-toggle").toggleClass("hidden-sm")
     $("#sidebar-toggle").toggleClass("hidden-md")
     $("#sidebar-toggle").toggleClass("hidden-xl")
     $("#sidebar-toggle").toggleClass("hidden-lg")
+    setTimeout(function (){
+        window.onresize()
+    }, 300);
 });
 $("#menu-toggle-content").click(function(e) {
 	e.preventDefault();
 	$("#wrapper").toggleClass("toggled");
+    $("#sidebar-toggle").toggleClass("hidden-sm")
     $("#sidebar-toggle").toggleClass("hidden-md")
     $("#sidebar-toggle").toggleClass("hidden-xl")
     $("#sidebar-toggle").toggleClass("hidden-lg")
+    setTimeout(function(){
+        window.onresize()
+    }, 300);
 });
 
-function now() {
-    window.dispatchEvent(new Event('resize'));
-}
 </script>
 
 </body>

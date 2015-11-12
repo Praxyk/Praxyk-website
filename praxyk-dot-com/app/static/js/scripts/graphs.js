@@ -10,6 +10,7 @@ function transaction_status_pie(state_counts, state_names) {
     margin : {l:30, r:30, t:20, b:20},
     height : 200,
     pad : 50,
+    autosize : "initial",
     showlegend : false
     };
 

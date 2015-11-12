@@ -13,9 +13,9 @@
 {% endblock %}
 
 {% block content %}
-    <div class="col-sm-offset-0 col-md-offset-1 col-lg-offset-1 col-sm-12 col-md-10 col-lg-10">
+    <div class="col-lg-offset-1 col-sm-12 col-md-12 col-lg-10" style="padding:0"  >
       <br>
-      <div><h1 style="text-align:center"> Transactions </h1></div>
+      <div class="page-header"><h1 style="text-align:center"><strong>Transactions</strong></h1></div>
 
         {% if not all_transactions %}
             <div class="col-md-12 col-lg-12 col-sm-12">
@@ -31,7 +31,7 @@
           {% else %}
 
             <div class="row">
-                <div class="col-md-offset-1 col-lg-offset-1 col-md-10 col-lg-10 col-sm-12 col-xs-12">
+                <div class="col-lg-offset-1 col-md-12 col-lg-10 col-sm-12 col-xs-12">
                     {% for trans_card in trans_cards %}
 
                     {{ trans_card|safe }}
@@ -43,7 +43,8 @@
 
     </div>
 <script src="/static/js/scripts/graphs.js"></script>
-<script> transaction_status_pie({{ state_counts|safe }}, {{ state_names|safe }});
+<script> 
+         transaction_status_pie({{ state_counts|safe }}, {{ state_names|safe }});
 		 transaction_status_bar({{ date_counts|safe }}, {{ dates|safe }});
 </script>
 		

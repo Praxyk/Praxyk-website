@@ -11,9 +11,9 @@
 {% endblock %}
 
 {% block content %}
-    <div class="col-sm-offset-2 col-md-offset-1 col-lg-offset-1 col-sm-10 col-md-10 col-lg-10">
+    <div class="col-lg-offset-1 col-sm-12 col-md-12 col-lg-10" style="padding-right:5px; padding-left:5px":>
     <br>
-        <div><h1 style="text-align:center"> Praxyk Dashboard</h1></div>
+    <div class="page-header"><h1 style="text-align:center"><strong> Praxyk Dashboard</strong></h1></div>
           <div class="row">
             {% if not all_transactions %}
                 <div class="col-md-12 col-lg-12 col-sm-12">
@@ -29,7 +29,7 @@
 
               {% else %}
 
-			<div class="col-md-8 col-lg-8 col-sm-12">
+			<div class="col-md-12 col-lg-8 col-sm-12">
 				<div class="col-md-6 col-lg-6 col-sm-6">
 				  <div class="card">
 					  <div class="cardtitle">
@@ -53,14 +53,14 @@
 				</div>
 
 				<div class="col-md-12 col-lg-12 col-sm-12">
-                    {{ trans_card|safe }}
+                </div>
+				<div id="new_trans_card" class="col-md-12 col-lg-12 col-sm-12">
                 </div>
             </div>
 
 
 
-
-            <div class="col-md-4 col-lg-4 col-sm-12">
+            <div class="col-md-12 col-lg-4 col-sm-12">
 			 <div class="col-md-12 col-lg-12 col-sm-12">
               <div class="card">
                   <div class="cardtitle">
@@ -78,7 +78,7 @@
 
 
           <div class="row">
-            <div class="col-md-8 col-lg-8 col-sm-12">
+            <div class="col-md-12 col-lg-8 col-sm-12">
 			 <div class="col-md-12 col-lg-12 col-sm-12">
               <div class="card">
                   <div class="cardtitle">
@@ -91,8 +91,8 @@
             </div>
             </div>
 
-            <div class="col-md-4 col-lg-4 col-sm-12">
-			 <div class="col-md-12 col-lg-12 col-sm-12">
+            <div class="col-md-12 col-lg-4 col-sm-12">
+			 <div class="col-md-6 col-lg-12 col-sm-12">
               <div class="card">
                   <div class="cardtitle">
                     <h5 style="text-align:center" >Monthly Costs</h5>
@@ -105,7 +105,7 @@
                 </div>
             </div>
 
-            <div class="col-md-12 col-lg-12 col-sm-12">
+            <div class="col-md-6 col-lg-12 col-sm-12">
               <div class="card">
                   <div class="cardtitle">
                     <h5 style="text-align:center" >Service Usage</h5>
@@ -122,14 +122,18 @@
     </div>
 </div>
 <script
-<script src="/static/js/scripts/graphs.js"></script>
 <script> transaction_status_pie({{ state_counts|safe }}, {{ state_names|safe }});
 		 transaction_status_bar({{ date_counts|safe }}, {{ dates|safe }});
 
- function OnResize() {
+
+ window.resize = function() {
      transaction_status_pie({{ state_counts|safe }}, {{ state_names|safe }});
      transaction_status_bar({{ date_counts|safe }}, {{ dates|safe }});
-  }
+  };
+
+ // render_trans({{ transactions[0]|safe }}, function(html) { $("#new_trans_card").prepend(html); console.log("FUKC"); console.log(html); });
+var transaction = {{ all_transactions[0]|safe }}
+window.onload = function() {push_trans({{ all_transactions[0]|safe }}, "{{ token }}");};
 
 </script>
  
