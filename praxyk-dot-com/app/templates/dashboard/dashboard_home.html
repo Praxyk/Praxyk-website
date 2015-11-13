@@ -15,7 +15,7 @@
     <br>
     <div class="page-header"><h1 style="text-align:center"><strong> Praxyk Dashboard</strong></h1></div>
           <div class="row">
-            {% if not all_transactions %}
+            {% if not newest_trans %}
                 <div class="col-md-12 col-lg-12 col-sm-12">
                 <div class="jumbotron">
                     <div class="row">
@@ -98,9 +98,7 @@
                     <h5 style="text-align:center" >Monthly Costs</h5>
                   </div>
                   <div class="cardbody">
-                      {% for key in command_counts %}
                       <h3 style="text-align:center">${{ cost_total }}</h3>
-                      {% endfor %}
                   </div>
                 </div>
             </div>
@@ -112,7 +110,7 @@
                   </div>
                   <div class="cardbody">
                       {% for key in command_counts %}
-                      <h3 style="text-align:center">{{ key }} : {{ command_counts[key] }}</h3>
+                      <h5 style="text-align:center">{{ key }} : {{ command_counts[key] }}</h5>
                       {% endfor %}
                   </div>
                 </div>
@@ -121,21 +119,22 @@
         </div>
     </div>
 </div>
-<script
-<script> transaction_status_pie({{ state_counts|safe }}, {{ state_names|safe }});
-		 transaction_status_bar({{ date_counts|safe }}, {{ dates|safe }});
+{% endblock %}
+
+{% block scripts %}
+    <script> 
+        transaction_status_pie({{ state_counts|safe }}, {{ state_names|safe }});
+        transaction_status_bar({{ date_counts|safe }}, {{ dates|safe }});
 
 
- window.resize = function() {
-     transaction_status_pie({{ state_counts|safe }}, {{ state_names|safe }});
-     transaction_status_bar({{ date_counts|safe }}, {{ dates|safe }});
-  };
+         window.resize = function() {
+             transaction_status_pie({{ state_counts|safe }}, {{ state_names|safe }});
+             transaction_status_bar({{ date_counts|safe }}, {{ dates|safe }});
+          };
 
- // render_trans({{ transactions[0]|safe }}, function(html) { $("#new_trans_card").prepend(html); console.log("FUKC"); console.log(html); });
-var transaction = {{ all_transactions[0]|safe }}
-window.onload = function() {push_trans({{ all_transactions[0]|safe }}, "{{ token }}");};
+         // render_trans({{ transactions[0]|safe }}, function(html) { $("#new_trans_card").prepend(html); console.log("FUKC"); console.log(html); });
+        var transaction = {{ newest_trans|safe }}
+        window.onload = function() {push_trans(transaction, "{{ token }}");};
 
 </script>
- 
-		
 {% endblock %}

@@ -57,7 +57,8 @@ function render_trans(transaction, url, callback) {
     });
 }
 
-function trans_spin(id, token, type) {
+function trans_spin(id, token, type, count) {
+    if (typeof(count)==='undefined') count = 1;
 
     get_transaction(token, id, function(result) {
          console.log(result)
@@ -96,8 +97,10 @@ function trans_spin(id, token, type) {
         }
 
         setTimeout(function (){
-            return trans_spin(id, token, type);
-        }, 100);
+            count = count+1;
+            console.log(count);
+            return trans_spin(id, token, type, count++);
+        }, Math.min(100+200*count, 5000));
 
     });
 
@@ -297,3 +300,38 @@ function api_call(url,method,payload,content_type,prog,callback){
 	}
 }
 
+function createCookie(name, value, expires, path, domain) {
+  var cookie = name + "=" + escape(value) + ";";
+
+  if (expires) {
+    // If it's a date
+    if(expires instanceof Date) {
+      // If it isn't a valid date
+      if (isNaN(expires.getTime()))
+       expires = new Date();
+    }
+    else
+      expires = new Date(new Date().getTime() + parseInt(expires) * 1000 * 60 * 60 * 24);
+
+    cookie += "expires=" + expires.toGMTString() + ";";
+  }
+
+  if (path)
+    cookie += "path=" + path + ";";
+  if (domain)
+    cookie += "domain=" + domain + ";";
+
+  document.cookie = cookie;
+}
+
+function getCookie(name) {
+  var regexp = new RegExp("(?:^" + name + "|;\s*"+ name + ")=(.*?)(?:;|$)", "g");
+  var result = regexp.exec(document.cookie);
+  return (result === null) ? null : result[1];
+}
+
+function deleteCookie(name, path, domain) {
+  // If the cookie exists
+  if (getCookie(name))
+    createCookie(name, "", -1, path, domain);
+}

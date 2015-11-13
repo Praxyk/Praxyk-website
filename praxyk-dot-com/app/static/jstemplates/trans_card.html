@@ -5,17 +5,41 @@
             <div class="row">
                 <div class="col-md-2 col-lg-2 col-sm-4 col-xs-4" style="padding:0;padding-left:10px;padding-top:7px">
                     <p style="text-align:left"> 
-                    {{#ifCond transaction.status "finished"}}
-                    <span class="label label-success"> #{{ transaction.trans_id}} Success <i class="fa fa-check-square"> </i> </span>
+                   {{#ifCond transaction.status "finished"}}
+					<span title="Success">
+                        <span class="label label-success"> 
+                            #{{ transaction.trans_id}} 
+                            <i style="padding-left:10px" class="fa fa-check-square">
+                            </i>
+                        </span>
+                    </span>
                     {{/ifCond}}
                     {{#ifCond transaction.status "failed"}}
-                    <span style="background-color:#7D2529" class="label label-warn"> #{{ transaction.trans_id}} Failed <i class="fa fa-exclamation-triangle"></i> </span>
+						<span title="Failed">
+							<span style="background-color:#7D2529" class="label label-warn">
+								#{{ transaction.trans_id}} 
+								<i  style="padding-left:10px"  class="fa fa-exclamation-triangle">
+								</i>
+							</span>
+						</span>
                     {{/ifCond}}
                     {{#ifCond transaction.status 'active'}}
-                    <span style="background-color:#37474f" class="label label-info">  #{{ transaction.trans_id}} Active <i class="fa fa-cog fa-spin"></i> </span>
+						<span title="Failed">
+							<span style="background-color:#7D2529" class="label label-info">
+								#{{ transaction.trans_id}} 
+								<i  style="padding-left:10px"  class="fa fa-exclamation-triangle">
+								</i>
+							</span>
+						</span>
                     {{/ifCond}}
                     {{#ifCond transaction.status 'new'}}
-                    <span style="background-color:#37474f" class="label label-info">  #{{ transaction.trans_id}} Active <i class="fa fa-spinner fa-pulse"></i> </span>
+						<span title="Active">
+							<span style="background-color:#37474f" class="label label-info">
+								#{{ transaction.trans_id}} <span style="padding-right:10px"> </span>
+								<i class="fa fa-cog fa-spin">
+								</i>
+							</span>
+						</span> 
                     {{/ifCond}}
                      </p>
                 </div>

@@ -2,6 +2,7 @@
 
 <head>
 <script type="text/javascript" src="/static/js/scripts/graphs.js"></script>
+<script src="/static/js/scripts/praxyk.js"></script>
 </head>
 
 {% block navbar %}
@@ -13,9 +14,32 @@
 {% endblock %}
 
 {% block content %}
-    <div class="col-lg-offset-1 col-sm-12 col-md-12 col-lg-10" style="padding:0"  >
-      <br>
-      <div class="page-header"><h1 style="text-align:center"><strong>Transactions</strong></h1></div>
+    <div class="col-sm-12 col-md-12 col-lg-12" style="padding:0"  >
+		<div class="row">
+			<div class="col-sm-3 col-md-2 col-lg-2" style="padding-top: 20px">
+				<div class="col-md-12 col-lg-6 col-sm-6" style="width:fill-div">
+					{%if prev_page %}
+					<a href="/dashboard/transactions?page={{prev_page}}">
+ 						<div style="min-width:100%" class="btn btn-default">
+							<i class="fa fa-chevron-left"></i> Newer
+ 						 </div>
+					</a>
+					 {% endif %}
+				</div>
+				<div class="col-md-12 col-lg-6 col-sm-6" style="width:fill-div" >
+					{%if next_page %}
+					<a href="/dashboard/transactions?page={{next_page}}">
+						<div style="min-width:100%" class="btn btn-default">
+							 Older <i class="fa fa-chevron-right"></i>
+						</div>
+					</a>
+					 {% endif %}
+				</div>
+			</div>
+			<div class="col-sm-8 col-md-8 col-lg-8">
+				  <div class="page-header"><h1 style="text-align:center"><strong>Transactions</strong></h1></div>
+			</div>
+			</div>
 
         {% if not all_transactions %}
             <div class="col-md-12 col-lg-12 col-sm-12">
@@ -32,22 +56,21 @@
 
             <div class="row">
                 <div class="col-lg-offset-1 col-md-12 col-lg-10 col-sm-12 col-xs-12">
-                    {% for trans_card in trans_cards %}
-
-                    {{ trans_card|safe }}
-
-                    {% endfor %}
+                    <div id="new_trans_card" class="col-md-12 col-sm-12 col-lg-12"></div>
                 </div>
             </div> <!-- end row -->
         {% endif %}
 
     </div>
-<script src="/static/js/scripts/graphs.js"></script>
-<script> 
-         transaction_status_pie({{ state_counts|safe }}, {{ state_names|safe }});
-		 transaction_status_bar({{ date_counts|safe }}, {{ dates|safe }});
-</script>
-		
 {% endblock %}
 
+{% block scripts %}
+    <script> 
+	   transactions = {{ all_transactions|safe }};
+        setTimeout(function (){                                                                                                                      
+			transactions.map( function(item) {push_trans(item, "{{ token }}"); });
+        }, 300);
 
+
+    </script>
+{% endblock %}

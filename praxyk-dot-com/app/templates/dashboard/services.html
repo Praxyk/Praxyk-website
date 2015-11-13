@@ -14,11 +14,11 @@
 
 {% block content %}
 
-    <div class="col-lg-offset-1 col-sm-12 col-md-12 col-lg-10">
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" style="padding:0">
     <br>
-    <div class="col-md-12 col-sm-12 col-lg-12">
+    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
 		  <h2 style="text-align:center"> 
-			Praxyk Services 
+			<strong>Prediction on Demand Services </strong>
 		  </h2>
     </div>
 
@@ -79,7 +79,7 @@
     <div class="card" style="overflow: visible">
     <div class='cardtitle'>
         <div class="row">
-        <h5 style="text-align:center" >Upload Files</h5>
+        <h5 style="text-align:center" >Make a Request</h5>
         </div>
     </div>
     <div class="cardbody" style="overflow: visible">
@@ -157,6 +157,19 @@ $('#pod_choices > a').click(function() {
 	$("#pod_storage").val($(this).val())
 });
 </script>
+{% endblock %}
+
+
+{% block scripts %}
+
 <script>
+$("#pod-input").fileinput({
+    // uploadUrl: "/file-upload-batch/2",
+	resizeImage : true,
+    allowedFileExtensions: ["jpg", "png", "gif"],
+    maxImageWidth: 50,
+    maxImageHeight: 50
+});
 </script>
+
 {% endblock %}

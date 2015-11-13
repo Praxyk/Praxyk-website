@@ -269,96 +269,95 @@ table tbody tr td {
 .navbar {
   min-height: 50px;
   z-index: 999999999;
-  overflow-y: visible;
   border-radius: 0px;
   margin: 0px;
   padding: 0px;
   border: 0px;
 }
-/* line 20, ../sass/navbar_dashboard.sass */
+/* line 19, ../sass/navbar_dashboard.sass */
 .navbar .affix {
   position: fixed;
   top: 0px;
   width: 100%;
 }
-/* line 24, ../sass/navbar_dashboard.sass */
+/* line 23, ../sass/navbar_dashboard.sass */
 .navbar .navbar-default {
   height: 50px;
   background-color: #37474f;
   border-color: #37474f;
 }
-/* line 28, ../sass/navbar_dashboard.sass */
+/* line 27, ../sass/navbar_dashboard.sass */
 .navbar .navbar-default .navbar-brand {
   color: #E0E0E0;
 }
-/* line 30, ../sass/navbar_dashboard.sass */
+/* line 29, ../sass/navbar_dashboard.sass */
 .navbar .navbar-default .navbar-brand:hover, .navbar .navbar-default .navbar-brand:focus {
   color: #FFFFFF;
 }
-/* line 32, ../sass/navbar_dashboard.sass */
+/* line 31, ../sass/navbar_dashboard.sass */
 .navbar .navbar-default .navbar-text {
   color: #E0E0E0;
   width: 75%;
 }
-/* line 35, ../sass/navbar_dashboard.sass */
+/* line 34, ../sass/navbar_dashboard.sass */
 .navbar .navbar-default .navbar-nav {
   margin-top: 0px;
   margin-bottom: 0px;
 }
-/* line 39, ../sass/navbar_dashboard.sass */
+/* line 38, ../sass/navbar_dashboard.sass */
 .navbar .navbar-default .navbar-nav > li > a {
   color: #E0E0E0;
   font-size: 14px;
 }
-/* line 42, ../sass/navbar_dashboard.sass */
+/* line 41, ../sass/navbar_dashboard.sass */
 .navbar .navbar-default .navbar-nav > li > a:hover, .navbar .navbar-default .navbar-nav > li > a:focus {
   color: #FFFFFF;
 }
-/* line 55, ../sass/navbar_dashboard.sass */
+/* line 54, ../sass/navbar_dashboard.sass */
 .navbar .navbar-default .navbar-nav > .active > a, .navbar .navbar-default .navbar-nav > .active > a:hover, .navbar .navbar-default .navbar-nav > .active > a:focus {
   color: #FFFFFF;
   background-color: #78909C;
 }
-/* line 59, ../sass/navbar_dashboard.sass */
+/* line 58, ../sass/navbar_dashboard.sass */
 .navbar .navbar-default .navbar-nav > .open > a, .navbar .navbar-default .navbar-nav > .open > a:hover, .navbar .navbar-default .navbar-nav > .open > a:focus {
   color: #FFFFFF;
   background-color: #78909C;
 }
-/* line 62, ../sass/navbar_dashboard.sass */
+/* line 61, ../sass/navbar_dashboard.sass */
 .navbar .navbar-default .navbar-toggle {
   border-color: #37474f;
 }
-/* line 64, ../sass/navbar_dashboard.sass */
+/* line 63, ../sass/navbar_dashboard.sass */
 .navbar .navbar-default .navbar-toggle:hover, .navbar .navbar-default .navbar-toggle:focus {
   background-color: #78909C;
 }
-/* line 66, ../sass/navbar_dashboard.sass */
+/* line 65, ../sass/navbar_dashboard.sass */
 .navbar .navbar-default .navbar-toggle .icon-bar {
   background-color: #E0E0E0;
 }
-/* line 68, ../sass/navbar_dashboard.sass */
+/* line 67, ../sass/navbar_dashboard.sass */
 .navbar .navbar-default .navbar-collapse,
 .navbar .navbar-default .navbar-form {
   border-color: #E0E0E0;
 }
-/* line 71, ../sass/navbar_dashboard.sass */
+/* line 70, ../sass/navbar_dashboard.sass */
 .navbar .navbar-default .navbar-link {
   color: #E0E0E0;
 }
-/* line 73, ../sass/navbar_dashboard.sass */
+/* line 72, ../sass/navbar_dashboard.sass */
 .navbar .navbar-default .navbar-link:hover {
   color: #37474f;
 }
 @media (max-width: 767px) {
-  /* line 77, ../sass/navbar_dashboard.sass */
+  /* line 76, ../sass/navbar_dashboard.sass */
   .navbar .navbar-default .navbar-nav .open .dropdown-menu > li > a {
     color: #E0E0E0;
   }
-  /* line 79, ../sass/navbar_dashboard.sass */
+  /* line 78, ../sass/navbar_dashboard.sass */
   .navbar .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
     color: #FFFFFF;
   }
-  /* line 82, ../sass/navbar_dashboard.sass */
+  /* line 81, ../sass/navbar_dashboard.sass */
   .navbar .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
     color: #FFFFFF;
     background-color: #78909C;

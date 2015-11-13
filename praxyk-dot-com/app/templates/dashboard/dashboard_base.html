@@ -60,7 +60,7 @@
 {% block navbar %}{% endblock %}
 </div>
 
-<body onLoad="OnLoad()" onresize="OnResize()">
+<body onload="OnLoad()" onresize="OnResize()">
 	<div id="wrapper">
 		{% block sidebar %}{% endblock %}
 			<div class="page-content-wrapper">
@@ -97,8 +97,35 @@ window.resize = OnResize()
 
 </script>
 <script>
+function showsidebar() {
+	deleteCookie('show_sidebar')
+	createCookie('show_sidebar', true)
+	$("#wrapper").removeClass("toggled");
+    $("#sidebar-toggle").addClass("hidden-sm")
+    $("#sidebar-toggle").addClass("hidden-md")
+    $("#sidebar-toggle").addClass("hidden-xl")
+    $("#sidebar-toggle").addClass("hidden-lg")
+    setTimeout(function (){
+        window.onresize()
+    }, 300);
+}
+
+function hidesidebar() {
+	deleteCookie('show_sidebar')
+	createCookie('show_sidebar', false)
+	$("#wrapper").addClass("toggled");
+    $("#sidebar-toggle").removeClass("hidden-sm")
+    $("#sidebar-toggle").removeClass("hidden-md")
+    $("#sidebar-toggle").removeClass("hidden-xl")
+    $("#sidebar-toggle").removeClass("hidden-lg")
+    setTimeout(function (){
+        window.onresize()
+    }, 300);
+}
 $("#menu-toggle-inline").click(function(e) {
 	e.preventDefault();
+	deleteCookie('show_sidebar')
+	createCookie('show_sidebar', $("#wrapper").hasClass("toggled"))
 	$("#wrapper").toggleClass("toggled");
     $("#sidebar-toggle").toggleClass("hidden-sm")
     $("#sidebar-toggle").toggleClass("hidden-md")
@@ -110,6 +137,8 @@ $("#menu-toggle-inline").click(function(e) {
 });
 $("#menu-toggle-content").click(function(e) {
 	e.preventDefault();
+	deleteCookie('show_sidebar')
+	createCookie('show_sidebar', $("#wrapper").hasClass("toggled"))
 	$("#wrapper").toggleClass("toggled");
     $("#sidebar-toggle").toggleClass("hidden-sm")
     $("#sidebar-toggle").toggleClass("hidden-md")
@@ -120,7 +149,23 @@ $("#menu-toggle-content").click(function(e) {
     }, 300);
 });
 
+$(function() {
+    setTimeout(function(){
+		if(getCookie('show_sidebar') === true) {
+			showsidebar()
+		}
+		else if(getCookie('show_sidebar') === false) {
+			hidesidebar()
+		}
+		else {
+			showsidebar()
+		}
+    }, 10);
+});
+
 </script>
+
+{% block scripts %}{% endblock %}
 
 </body>
 </html>
