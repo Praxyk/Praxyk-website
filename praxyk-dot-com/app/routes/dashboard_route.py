@@ -1,7 +1,10 @@
 from flask import Flask, session, redirect, url_for, escape, request, render_template
 import requests
 import json
-import urllib.parse
+try:
+    from urllib.parse import urlparse
+except ImportError:
+    from urlparse import urlparse
 from app import app
 from app import *
 from app.util.defines import *
