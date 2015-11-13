@@ -2,9 +2,9 @@ from flask import Flask, session, redirect, url_for, escape, request, render_tem
 import requests
 import json
 try:
-    from urllib.parse import urlparse
+    from urllib.parse import urlparse, parse_qs
 except ImportError:
-    from urlparse import urlparse
+    from urlparse import urlparse, parse_qs
 from app import app
 from app import *
 from app.util.defines import *
@@ -29,6 +29,7 @@ def dashboard():
 	ingress_str = "0.00 KB"
 	dates4 = []
 	date_counts = []
+	newest_trans = {}
 	if not session.get('token') or not session.get('user') :
 		return redirect(url_for('users_route.login_page', _external=True))
 	navbar = get_dashboard_navbar()
@@ -129,13 +130,15 @@ def transactions_tab():
 	sidebar = get_sidebar()
 	tdict = get_transactions(page=page, page_size=page_size)
 	print("\n\n" + str(tdict) + "\n\n")
-	transactions = tdict.get('transactions', [])
+	transactions = tdict.get('transactions', []) if tdict else []
 	transactions = transactions[::-1]
 	for t in transactions :
 		t['finished_at'] = "" if not t['finished_at'] else t.get('finished_at')
 	trans_cards = [render_trans_card(t) for t in transactions]
 	num_transactions = len(transactions)
 
+	if not tdict or isinstance(tdict, list) :
+		tdict = {}
 	page = tdict.get('page', None)
 	next_page = tdict.get('next_page', None)
 	prev_page = tdict.get('prev_page', None)
@@ -374,7 +377,7 @@ def render_result_card(result) :
 # @info - takes a url like api.praxyk.com/transactions?page=3&page_size=12 and returns
 #         {'page' : 3, 'page_size' : 12}
 def get_params_from_url(url) :
-	query_raw = urllib.parse.urlparse(url).query
-	query_dict = urllib.parse.parse_qs(query_raw)
+	query_raw = urlparse(url).query
+	query_dict = parse_qs(query_raw)
 	return query_dict
 
