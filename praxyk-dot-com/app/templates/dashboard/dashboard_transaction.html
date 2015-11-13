@@ -13,41 +13,47 @@
 {% endblock %}
 
 {% block content %}
-    <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" style="padding:0">
-    <br>
+<div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" style="padding:0">
+<br>
 
-    <div class="col-md-12 col-sm-12 col-lg-12" style="padding:0">
-    <div class="row">
-		<div class="col-sm-3 col-md-2 col-lg-2" style="padding-top: 20px">
-			<div class="col-md-12 col-lg-6 col-sm-6" style="width:fill-div">
-					{%if nxt %}
-					<a href="/dashboard/transaction/{{nxt}}">
-						<div style="min-width:100%" class="btn btn-default">
-							<i class="fa fa-chevron-left"></i> Newer
+    <div class="col-lg-offset-1 col-md-12 col-sm-12 col-lg-10 col-xs-12" style="padding:0">
+		<div class="row">
+			<div class="col-sm-12 col-md-12 col-lg-12 col-xs-12"  >
+				<div class="col-sm-12 col-md-12 col-lg-12 col-xs-12"  >
+				<div class="card">
+					<div class="col-sm-3 col-md-2 col-lg-2" style="padding-top: 20px">
+						<div class="col-xs-12 col-md-12 col-lg-12 col-sm-12" style="width:fill-div">
+							{%if nxt %}
+							<a href="/dashboard/transaction/{{nxt}}">
+								<div style="min-width:100%" class="btn btn-default fill-div">
+									<i class="fa fa-chevron-left"></i> Newer
+								</div>
+							</a>
+							 {% endif %}
+							{%if prev %}
+							<a href="/dashboard/transaction/{{prev}}">
+								<div style="min-width:100%" class="btn btn-default fill-div">
+									 Older <i class="fa fa-chevron-right"></i>
+								 </div>
+							</a>
+							 {% endif %}
 						</div>
-					</a>
-					 {% endif %}
+					</div>
+					<div class="col-sm-8 col-md-8 col-lg-8">
+					  <div >
+						  <h1 style="text-align:center">
+							  <strong>Transaction</strong> <small> #{{ transaction.trans_id }}</small> 
+						  </h1>
+					  </div>
+					</div>
 				</div>
-				<div class="col-md-12 col-lg-6 col-sm-6" style="width:fill-div" >
-					{%if prev %}
-					<a href="/dashboard/transaction/{{prev}}">
- 						<div style="min-width:100%" class="btn btn-default">
-							 Older <i class="fa fa-chevron-right"></i>
- 						 </div>
-					</a>
-					 {% endif %}
+			</div>
 			</div>
 		</div>
-		<div class="col-sm-8 col-md-8 col-lg-8">
-          <div class="page-header">
-              <h1 style="text-align:center">
-                  <strong>Transaction</strong> <small> #{{ transaction.trans_id }}</small> 
-              </h1>
-          </div>
 		</div>
-    </div>
 
 
+    <div class="col-lg-offset-1 col-md-12 col-sm-12 col-lg-10 col-xs-12" style="padding:0">
 		<div class="row">
 			<div class="col-md-12 col-lg-8 col-sm-12 col-xs-12">
 					<div id="new_trans_card" class="col-md-12 col-sm-12 col-lg-12"></div>

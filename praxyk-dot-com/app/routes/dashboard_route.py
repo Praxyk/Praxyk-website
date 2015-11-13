@@ -2,9 +2,9 @@ from flask import Flask, session, redirect, url_for, escape, request, render_tem
 import requests
 import json
 try:
-    from urllib.parse import urlparse, parse_qs
+	from urllib.parse import urlparse, parse_qs
 except ImportError:
-    from urlparse import urlparse, parse_qs
+	from urlparse import urlparse, parse_qs
 from app import app
 from app import *
 from app.util.defines import *
@@ -36,7 +36,7 @@ def dashboard():
 	sidebar = get_sidebar()
 	transactions = get_transactions(paginated=False)
 	for t in transactions :
-		t['finished_at'] = "" if not t['finished_at'] else t.get('finished_at')
+		t['finished_at'] = "" if not t['finished_at'] else t['finished_at']
 	num_transactions = len([] if not transactions else transactions)
 	commands = set([trans['command_url'] for trans in transactions])
 	command_counts = {url : 0 for url in commands}
@@ -90,6 +90,8 @@ def dashboard():
 
 		dates4 = [str(x) for x in dates3]
 
+	newest_trans['finished_at'] = "" if not newest_trans['finished_at'] else newest_trans['finished_at']
+
 	return render_template('/dashboard/dashboard_home.html',
 						   token=session['token'],
 						   user=session['user'],
@@ -130,7 +132,7 @@ def transactions_tab():
 	transactions = tdict.get('transactions', []) if tdict else []
 	transactions = transactions[::-1]
 	for t in transactions :
-		t['finished_at'] = "" if not t['finished_at'] else t.get('finished_at')
+		t['finished_at'] = "" if not t['finished_at'] else t['finished_at']
 	trans_cards = [render_trans_card(t) for t in transactions]
 	num_transactions = len(transactions)
 
@@ -198,6 +200,8 @@ def transaction_tab(id):
 	page = results.get('page') if results else {}
 	res_list = page.get('results', []) if page else []
 	result_cards = [render_result_card(r, transaction.get('trans_id', 0)) for r in res_list]
+
+	transaction['finished_at'] = "" if not transaction['finished_at'] else transaction['finished_at']
 
 	return render_template('/dashboard/dashboard_transaction.html',
 						   token=session['token'],
@@ -384,7 +388,7 @@ def render_result_card(result, tid) :
 		return ""
 
 # @info - takes a url like api.praxyk.com/transactions?page=3&page_size=12 and returns
-#         {'page' : 3, 'page_size' : 12}
+#		 {'page' : 3, 'page_size' : 12}
 def get_params_from_url(url) :
 	query_raw = urlparse(url).query
 	query_dict = parse_qs(query_raw)
