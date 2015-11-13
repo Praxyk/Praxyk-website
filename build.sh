@@ -6,12 +6,19 @@
 # this script simply compiles any documentation needed by the project,
 # right now that just means compiling the wiki markdown to html
 
-sudo apt-get -y install nodejs-legacy npm
 sudo npm install -g markdown-styles
+xargs sudo apt-get -y install < .ubuntu_install
 
 RETVAL=$?
 [ $RETVAL -eq 0 ] && echo "  Docs : Ubuntu Requirements Install Success"
 [ $RETVAL -ne 0 ] && echo "  Docs : Ubuntu Requirements Install Failure" && exit 1
+
+
+sudo pip install -r .pip_install
+
+RETVAL=$?
+[ $RETVAL -eq 0 ] && echo "  Docs : Pip Requirements Install Success"
+[ $RETVAL -ne 0 ] && echo "  Docs : Pip  Requirements Install Failure" && exit 1
 
 cd praxyk-dot-com
 ./update_wiki.sh

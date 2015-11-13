@@ -1,0 +1,10 @@
+flask
+flask-cors
+flask-security
+requests
+markupsafe
+wtforms
+flask-restful
+flask-httpauth
+cffi
+

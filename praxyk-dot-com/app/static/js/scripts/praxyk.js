@@ -1,8 +1,8 @@
 //Praxyk JS Binding
 
 //api urls
-// var base_api_url= "http://api.praxyk.com/v1/";
-var base_api_url= "http://localhost:4001/v1/"  
+var base_api_url= "http://api.praxyk.com/v1/";
+//var base_api_url= "http://localhost:4001/v1/"  
 var pod_api_url = base_api_url + "pod/";
 var tlp_api_url = base_api_url + "tlp/";
 var token_api_url = base_api_url + "tokens/";
