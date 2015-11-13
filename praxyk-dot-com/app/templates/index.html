@@ -30,22 +30,27 @@
     </div>
 	<div class="row">
 <!-- If the user is logged in show a box to let them enter the dashboard -->
-        {% if user %}
-    <div class="col-md-offset-3 col-sm-offset-0 col-lg-offset-3 col-md-3 col-lg-3 col-sm-6">
-        <a href="/dashboard"><button class="btn btn-primary" style="width:100%">Enter Dashboard</button></a>
-    </div>
-    <div class="col-md-3 col-lg-3 col-sm-6">
-        <a href="/logout"><button class="btn btn-default" style="width:100%">Sign Out</button></a>
+    {% if user %}
+
+    <div class="col-md-offset-1 col-lg-offset-1 col-sm-12 col-xs-12 col-md-10 col-lg-10">
+        <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12" style="margin-bottom:10px">
+            <a href="/dashboard"><button class="btn btn-primary" style="width:100%">Enter Dashboard</button></a>
+        </div>
+        <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+            <a href="/logout"><button class="btn btn-default" style="width:100%">Sign Out</button></a>
+        </div>
     </div>
 
 	{% else %}
 
 <!-- If they're not logged in show a login/registration form  -->
-    <div class="col-md-offset-3 col-sm-offset-0 col-lg-offset-3 col-md-3 col-lg-3 col-sm-6">
-        <a href="/register"><div class="btn btn-success" style="width:100%">Register for Free</div></a>
-    </div>
-    <div class="col-md-3 col-lg-3 col-sm-6">
-        <a href="/login"><div class="btn btn-primary" style="width:100%">Login</div></a>
+    <div class="col-md-offset-1 col-lg-offset-1 col-sm-12 col-xs-12 col-md-10 col-lg-10">
+        <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12" style="margin-bottom:10px">
+            <a href="/register"><div class="btn btn-success" style="width:100%">Register for Free</div></a>
+        </div>
+        <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+            <a href="/login"><div class="btn btn-primary" style="width:100%">Login</div></a>
+        </div>
     </div>
         
 	{% endif %}

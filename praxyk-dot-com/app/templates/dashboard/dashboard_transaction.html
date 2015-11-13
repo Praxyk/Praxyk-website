@@ -20,14 +20,22 @@
     <div class="row">
 		<div class="col-sm-3 col-md-2 col-lg-2" style="padding-top: 20px">
 			<div class="col-md-12 col-lg-6 col-sm-6" style="width:fill-div">
-                {%if prev %}
-                <a href="/dashboard/transaction/{{prev}}"><div style="min-width:100%" class="btn btn-default"><i class="fa fa-chevron-left"></i> </div></a>
-                 {% endif %}
-			</div>
-			<div class="col-md-12 col-lg-6 col-sm-6" style="width:fill-div" >
-                {%if nxt %}
-                <a href="/dashboard/transaction/{{nxt}}"><div style="min-width:100%" class="btn btn-default"> <i class="fa fa-chevron-right"></i></div></a>
-                 {% endif %}
+					{%if nxt %}
+					<a href="/dashboard/transaction/{{nxt}}">
+						<div style="min-width:100%" class="btn btn-default">
+							<i class="fa fa-chevron-left"></i> Newer
+						</div>
+					</a>
+					 {% endif %}
+				</div>
+				<div class="col-md-12 col-lg-6 col-sm-6" style="width:fill-div" >
+					{%if prev %}
+					<a href="/dashboard/transaction/{{prev}}">
+ 						<div style="min-width:100%" class="btn btn-default">
+							 Older <i class="fa fa-chevron-right"></i>
+ 						 </div>
+					</a>
+					 {% endif %}
 			</div>
 		</div>
 		<div class="col-sm-8 col-md-8 col-lg-8">
@@ -42,10 +50,9 @@
 
 		<div class="row">
 			<div class="col-md-12 col-lg-8 col-sm-12 col-xs-12">
-				<div class="col-md-12 col-lg-12 col-sm-12">
-                    {{ trans_card | safe }}
+					<div id="new_trans_card" class="col-md-12 col-sm-12 col-lg-12"></div>
 			</div>
-			</div>
+
 
             <div class="col-md-12 col-lg-4 col-sm-12 col-xs-12">
 			 <div class="col-md-12 col-lg-12 col-sm-12">
@@ -86,9 +93,14 @@
         
     </div>
     </div>
-<script src="/static/js/scripts/graphs.js"></script>
-<script> transaction_status_pie({{ state_counts|safe }}, {{ state_names|safe }});
-		 transaction_status_bar({{ date_counts|safe }}, {{ dates|safe }});
+{% endblock %}
+
+{% block scripts %}
+<script>
+	 var transaction = {{ transaction|safe }};
+	 setTimeout(function(){                                                                                                                      
+		push_trans(transaction, "{{ token }}");
+	 }, 50);
 </script>
 		
 {% endblock %}

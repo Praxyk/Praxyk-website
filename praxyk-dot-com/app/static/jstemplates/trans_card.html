@@ -25,9 +25,9 @@
                     {{/ifCond}}
                     {{#ifCond transaction.status 'active'}}
 						<span title="Failed">
-							<span style="background-color:#7D2529" class="label label-info">
-								#{{ transaction.trans_id}} 
-								<i  style="padding-left:10px"  class="fa fa-exclamation-triangle">
+							<span style="background-color:#37474f" class="label label-info">
+								#{{ transaction.trans_id}} <span style="padding-right:10px"> </span>
+								<i class="fa fa-cog fa-spin">
 								</i>
 							</span>
 						</span>

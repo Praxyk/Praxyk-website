@@ -65,9 +65,6 @@ def dashboard():
 		dates.sort()
 		date_map = { dates[x]:x for x in range(0, len(dates)) }
 
-		print("\n\n\n" + str(date_map))
-
-		
 		dates2 = list(set([dateutil.parser.parse(x['created_at'].split("T")[0]) for x in transactions]))
 		dates2.sort()
 
@@ -82,7 +79,6 @@ def dashboard():
 
 		date_map = { dates3[x]:x for x in range(0, len(dates3)) }
 
-		print("\n\n\n" + str(date_map))
 
 		for x in dates3 :
 			date_counts.append(0)
@@ -123,13 +119,14 @@ def transactions_tab():
 	error = None
 	if not session.get('token') or not session.get('user') :
 		return redirect(url_for('users_route.login_page', _external=True))
+	if request.values.get('last', None) :
+		return transaction_tab(-1)
 	page = request.values.get('page', None)
-	page_size = request.values.get('page', 15)
+	page_size = request.values.get('page_size', 15)
 
 	navbar = get_dashboard_navbar()
 	sidebar = get_sidebar()
 	tdict = get_transactions(page=page, page_size=page_size)
-	print("\n\n" + str(tdict) + "\n\n")
 	transactions = tdict.get('transactions', []) if tdict else []
 	transactions = transactions[::-1]
 	for t in transactions :
@@ -165,7 +162,16 @@ def transaction_tab(id):
 		return redirect(url_for('users_route.login_page', _external=True))
 	navbar = get_dashboard_navbar()
 	sidebar = get_sidebar()
-	transaction = get_transaction(id)
+
+	transaction =  {}
+
+	if id == -1 :
+		trs = get_transactions(reverse_sort=True, page=1, page_size=1)
+		if trs and trs.get('transactions') :
+			t = trs.get('transactions', [None])[0]
+			transaction = t
+	else :
+		transaction = get_transaction(id)
 	if not transaction :
 		transaction = get_closest_transaction(id)
 	if not transaction :
@@ -175,7 +181,6 @@ def transaction_tab(id):
 	for x in range(0, len(transactions)) :
 		if transactions[x]['trans_id'] == str(id) :
 			index = x
-			print("Index Found : " + str(index) + " \n\n")
 			break
 	nxt = None if index <= 0 else index-1
 	prev = None if index >= len(transactions)-1 else index+1
@@ -192,8 +197,7 @@ def transaction_tab(id):
 	results = get_results(transaction['trans_id'], page=1, page_size=25)
 	page = results.get('page') if results else {}
 	res_list = page.get('results', []) if page else []
-	result_cards = [render_result_card(r) for r in res_list]
-	print(result_cards)
+	result_cards = [render_result_card(r, transaction.get('trans_id', 0)) for r in res_list]
 
 	return render_template('/dashboard/dashboard_transaction.html',
 						   token=session['token'],
@@ -345,15 +349,21 @@ def get_results(trans_id, paginated=True, page=1, page_size=15, model=None, serv
 
 	response = json.loads(r.text)
 
-	if not response or not response.get('code') == 200 or not (response.get('transactions',None) or response.get('page', None)) :
+	print("Results Response ID %s"%str(trans_id)+"\n\n")
+	print(json.dumps(response))
+	print("\n\n\n")
+
+	if not response or not response.get('code') == 200 :
 		return []
 
 	if paginated :
-		results  = response.get('page')['results']
-		results = reversed(results)
-		response['results'] = results
+		page = response.get('page', None)
+		if page :
+			results  = page.get('results', [])
+			results = reversed(results)
+			response['results'] = results
 	else :
-		results = response.get('results')
+		results = response.get('results', [])
 		results = reversed(results)
 		response['results'] = results
 
@@ -367,10 +377,9 @@ def render_trans_card(trans) :
 		return ""
 
 
-def render_result_card(result) :
+def render_result_card(result, tid) :
 	try :
-		print(result)
-		return render_template('dashboard/result_card.html', user=session.get('user', None), result=result)
+		return render_template('dashboard/result_card.html', user=session.get('user', None), result=result, trans_id=tid)
 	except :
 		return ""
 

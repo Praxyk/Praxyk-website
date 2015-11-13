@@ -6,11 +6,29 @@
                 <div class="col-md-2 col-lg-2 col-sm-4 col-xs-4" style="padding:0;padding-left:10px;padding-top:7px">
                     <p style="text-align:left"> 
                     {% if result.status == "finished": %}
-                        <span class="label label-success"> #{{ result.item_number }}  Success</span>
+                    <span title="Success">
+                        <span class="label label-success"> 
+                            Result {{ trans_id }}.{{ result.item_number }} 
+                            <i style="padding-left:10px" class="fa fa-check-square">
+                            </i>
+                        </span>
+                    </span>
                     {% elif result.status == "failed": %}
-                        <span style="background-color:#7D2529" class="label label-warn"> #{{ result.item_number }}  Failed</span>
+                    <span title="Failed">
+                        <span style="background-color:#7D2529" class="label label-warn">
+                            Result {{ trans_id }}.{{ result.item_number }} 
+                            <i  style="padding-left:10px"  class="fa fa-exclamation-triangle">
+                            </i>
+                        </span>
+                    </span>
                     {% elif result.status in ['active', 'new'] : %}
-                        <span style="background-color:#37474f" class="label label-info"> #{{ result.item_number }}  Active</span>
+                    <span title="Active">
+                        <span style="background-color:#37474f" class="label label-info">
+                            Result {{ trans_id }}.{{ result.item_number }} 
+                            <i class="fa fa-cog fa-spin">
+                            </i>
+                        </span>
+                    </span>
                     {% endif %}
                     </p>
                 </div>
