@@ -36,7 +36,7 @@ def dashboard():
 	sidebar = get_sidebar()
 	transactions = get_transactions(paginated=False)
 	for t in transactions :
-		t['finished_at'] = "" if not t['finished_at'] else t['finished_at']
+		t['finished_at'] = t.get('finished_at', "")
 	num_transactions = len([] if not transactions else transactions)
 	commands = set([trans['command_url'] for trans in transactions])
 	command_counts = {url : 0 for url in commands}
@@ -90,7 +90,7 @@ def dashboard():
 
 		dates4 = [str(x) for x in dates3]
 
-	newest_trans['finished_at'] = "" if not newest_trans['finished_at'] else newest_trans['finished_at']
+	newest_trans['finished_at'] = newest_trans.get('finished_at', "")
 
 	return render_template('/dashboard/dashboard_home.html',
 						   token=session['token'],
@@ -132,7 +132,7 @@ def transactions_tab():
 	transactions = tdict.get('transactions', []) if tdict else []
 	transactions = transactions[::-1]
 	for t in transactions :
-		t['finished_at'] = "" if not t['finished_at'] else t['finished_at']
+		t['finished_at'] = t.get('finished_at', "") 
 	trans_cards = [render_trans_card(t) for t in transactions]
 	num_transactions = len(transactions)
 
@@ -201,7 +201,7 @@ def transaction_tab(id):
 	res_list = page.get('results', []) if page else []
 	result_cards = [render_result_card(r, transaction.get('trans_id', 0)) for r in res_list]
 
-	transaction['finished_at'] = "" if not transaction['finished_at'] else transaction['finished_at']
+	transaction['finished_at'] = transaction.get('finished_at', "")
 
 	return render_template('/dashboard/dashboard_transaction.html',
 						   token=session['token'],

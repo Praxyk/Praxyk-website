@@ -51,10 +51,21 @@ function render_trans(transaction, url, callback) {
     $("#hidden-loader").load(url, function(result) {
             console.log(result);
             var template = Handlebars.compile(result);
+		    transaction = date_prettify(transaction)
             var html    = template({transaction : transaction});
             callback(html)
             return html
     });
+}
+
+function date_prettify(transaction)  {
+	if(transaction && transaction.created_at) {
+		transaction.created_at=new Date(transaction.created_at).toLocaleString();
+	}
+	if(transaction && transaction.finished_at) {
+		transaction.finished_at=new Date(transaction.finished_at).toLocaleString();
+	}
+	return transaction;
 }
 
 function trans_spin(id, token, type, count) {
