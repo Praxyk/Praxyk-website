@@ -16,7 +16,7 @@ body {
   font-family: "Karla";
   font-weight: normal;
   height: 100%;
-  overflow: hidden;
+  overflow: auto;
 }
 
 /* line 39, ../sass/_base.sass */
@@ -79,42 +79,44 @@ p {
   margin-bottom: 5px;
   margin-right: -5px;
   margin-left: -5px;
+  padding-right: -5px;
+  padding-left: -5px;
 }
-/* line 83, ../sass/_base.sass */
+/* line 85, ../sass/_base.sass */
 .card h1 {
   font-size: 57px;
   color: #37474f;
 }
-/* line 86, ../sass/_base.sass */
+/* line 88, ../sass/_base.sass */
 .card h2 {
   font-size: 48px;
   color: #37474f;
 }
-/* line 89, ../sass/_base.sass */
+/* line 91, ../sass/_base.sass */
 .card h3 {
   color: #37474f;
 }
-/* line 91, ../sass/_base.sass */
+/* line 93, ../sass/_base.sass */
 .card h4 {
   color: #37474f;
 }
-/* line 93, ../sass/_base.sass */
+/* line 95, ../sass/_base.sass */
 .card h5 {
   color: #37474f;
 }
-/* line 95, ../sass/_base.sass */
+/* line 97, ../sass/_base.sass */
 .card p {
   font-size: 16px;
 }
-/* line 98, ../sass/_base.sass */
+/* line 100, ../sass/_base.sass */
 .card .cardtitle {
   text-align: left;
   border-bottom: solid 1px #E0E0E0;
   padding: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
-/* line 104, ../sass/_base.sass */
+/* line 106, ../sass/_base.sass */
 .card .cardtitle h1 {
   font-size: 50px;
   padding-top: 3px;
@@ -122,7 +124,7 @@ p {
   margin-bottom: 3px;
   margin-top: 3px;
 }
-/* line 110, ../sass/_base.sass */
+/* line 112, ../sass/_base.sass */
 .card .cardtitle h2 {
   font-size: 40px;
   padding-top: 3px;
@@ -130,7 +132,7 @@ p {
   margin-bottom: 3px;
   margin-top: 3px;
 }
-/* line 116, ../sass/_base.sass */
+/* line 118, ../sass/_base.sass */
 .card .cardtitle h3 {
   font-size: 32px;
   text-align: center;
@@ -139,7 +141,7 @@ p {
   margin-bottom: 3px;
   margin-top: 3px;
 }
-/* line 123, ../sass/_base.sass */
+/* line 125, ../sass/_base.sass */
 .card .cardtitle h4 {
   font-size: 24px;
   text-align: center;
@@ -148,7 +150,7 @@ p {
   margin-bottom: 3px;
   margin-top: 3px;
 }
-/* line 130, ../sass/_base.sass */
+/* line 132, ../sass/_base.sass */
 .card .cardtitle h5 {
   color: #37474f;
   font-size: 16px;
@@ -158,25 +160,25 @@ p {
   margin-bottom: 3px;
   margin-top: 3px;
 }
-/* line 139, ../sass/_base.sass */
+/* line 141, ../sass/_base.sass */
 .card .cardbody {
   padding: 10px;
 }
-/* line 141, ../sass/_base.sass */
+/* line 143, ../sass/_base.sass */
 .card .cardbody h1 {
   font-size: 50px;
   padding-top: 3px;
   padding-bottom: 3px;
   margin-top: 3px;
 }
-/* line 146, ../sass/_base.sass */
+/* line 148, ../sass/_base.sass */
 .card .cardbody h2 {
   font-size: 40px;
   padding-top: 3px;
   padding-bottom: 3px;
   margin-top: 3px;
 }
-/* line 151, ../sass/_base.sass */
+/* line 153, ../sass/_base.sass */
 .card .cardbody h3 {
   font-size: 32px;
   text-align: center;
@@ -184,7 +186,7 @@ p {
   padding-bottom: 3px;
   margin-top: 3px;
 }
-/* line 157, ../sass/_base.sass */
+/* line 159, ../sass/_base.sass */
 .card .cardbody h4 {
   font-size: 24px;
   text-align: center;
@@ -192,7 +194,7 @@ p {
   padding-bottom: 3px;
   margin-top: 3px;
 }
-/* line 163, ../sass/_base.sass */
+/* line 165, ../sass/_base.sass */
 .card .cardbody h5 {
   font-size: 16px;
   text-align: center;
@@ -200,12 +202,12 @@ p {
   padding-bottom: 3px;
   margin-top: 3px;
 }
-/* line 169, ../sass/_base.sass */
+/* line 171, ../sass/_base.sass */
 .card .cardbody p {
   font-size: 14px;
   padding: 15px;
 }
-/* line 174, ../sass/_base.sass */
+/* line 176, ../sass/_base.sass */
 .card .cardtab {
   text-align: center;
   max-height: 100%;
@@ -215,7 +217,7 @@ p {
   padding: 7px;
   margin: 0px;
 }
-/* line 183, ../sass/_base.sass */
+/* line 185, ../sass/_base.sass */
 .card .cardtabtop {
   text-align: center;
   max-height: 40px;
@@ -226,7 +228,7 @@ p {
   margin: 0px;
 }
 
-/* line 195, ../sass/_base.sass */
+/* line 197, ../sass/_base.sass */
 .container .row {
   display: -webkit-box;
   display: -webkit-flex;
@@ -234,57 +236,57 @@ p {
   display: flex;
 }
 
-/* line 203, ../sass/_base.sass */
+/* line 205, ../sass/_base.sass */
 .panel .panel-heading h3 {
   padding-top: 0px;
   padding-bottom: 0px;
   margin: 0px;
 }
-/* line 207, ../sass/_base.sass */
+/* line 209, ../sass/_base.sass */
 .panel .panel-body {
   overflow-y: auto;
   padding: 0px;
 }
 
-/* line 212, ../sass/_base.sass */
+/* line 214, ../sass/_base.sass */
 .box {
   border: solid 1px #78909C;
   border-radius: 5px;
   margin: 10px;
 }
-/* line 217, ../sass/_base.sass */
+/* line 219, ../sass/_base.sass */
 .box .table {
   margin-bottom: 0px;
 }
 
-/* line 220, ../sass/_base.sass */
+/* line 222, ../sass/_base.sass */
 table {
   max-height: 200px;
   text-align: center;
   font-size: 14px;
 }
-/* line 227, ../sass/_base.sass */
+/* line 229, ../sass/_base.sass */
 table thead tr th {
   text-align: center;
   font-size: 15px;
 }
-/* line 232, ../sass/_base.sass */
+/* line 234, ../sass/_base.sass */
 table tbody tr td {
   font-size: 13px;
 }
 
-/* line 236, ../sass/_base.sass */
+/* line 238, ../sass/_base.sass */
 .table {
   max-height: 200px;
   text-align: center;
 }
-/* line 242, ../sass/_base.sass */
+/* line 244, ../sass/_base.sass */
 .table thead tr th {
   text-align: center;
   padding-left: 15px;
   padding-right: 15px;
 }
-/* line 248, ../sass/_base.sass */
+/* line 250, ../sass/_base.sass */
 .table tbody tr td {
   padding-left: 15px;
   padding-right: 15px;
@@ -292,60 +294,56 @@ table tbody tr td {
 
 /* line 7, ../sass/content.sass */
 .container-home .container-fluid {
-  overflow-y: auto;
   margin-right: auto;
   margin-left: auto;
   max-width: 1200px;
   height: 100%;
-  padding-bottom: 100px;
 }
 
-/* line 16, ../sass/content.sass */
+/* line 14, ../sass/content.sass */
 .container-navbar .container-fluid {
   margin-right: auto;
   margin-left: auto;
   max-width: 1200px;
 }
 
-/* line 23, ../sass/content.sass */
+/* line 21, ../sass/content.sass */
 .container-dashboard .container-fluid {
-  overflow-y: auto;
   margin-right: auto;
   margin-left: auto;
   max-width: 1900px;
   height: 100%;
-  padding-bottom: 100px;
 }
 
-/* line 32, ../sass/content.sass */
+/* line 28, ../sass/content.sass */
 .content {
   padding: 0px;
   background-color: #EEF2F1;
 }
-/* line 36, ../sass/content.sass */
+/* line 32, ../sass/content.sass */
 .content h1 {
   font-size: 48px;
   font-weight: bold;
   color: #37474f;
 }
-/* line 41, ../sass/content.sass */
+/* line 37, ../sass/content.sass */
 .content h2 {
   font-size: 40px;
 }
-/* line 44, ../sass/content.sass */
+/* line 40, ../sass/content.sass */
 .content h3 {
   font-size: 32px;
 }
-/* line 47, ../sass/content.sass */
+/* line 43, ../sass/content.sass */
 .content h4 {
   font-size: 24px;
 }
-/* line 50, ../sass/content.sass */
+/* line 46, ../sass/content.sass */
 .content h5 {
   font-size: 17px;
   font-weight: bold;
 }
-/* line 54, ../sass/content.sass */
+/* line 50, ../sass/content.sass */
 .content .login-register-box {
   background-color: #FFFFFF;
   border: solid 1px #78909C;
@@ -356,24 +354,24 @@ table tbody tr td {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
-/* line 65, ../sass/content.sass */
+/* line 61, ../sass/content.sass */
 .content .login-register-box > li > a {
   color: #E0E0E0;
 }
-/* line 66, ../sass/content.sass */
+/* line 62, ../sass/content.sass */
 .content .login-register-box > li > a:hover, .content .login-register-box > li > a:focus {
   color: #E0E0E0;
 }
-/* line 70, ../sass/content.sass */
+/* line 66, ../sass/content.sass */
 .content .login-register-box .btn {
   width: 100%;
 }
-/* line 73, ../sass/content.sass */
+/* line 69, ../sass/content.sass */
 .content fieldset {
   padding-left: 15px;
   padding-right: 15px;
 }
-/* line 79, ../sass/content.sass */
+/* line 75, ../sass/content.sass */
 .content fieldset .control-group .controls input {
   width: 100%;
   height: 30px;
@@ -385,14 +383,14 @@ table tbody tr td {
   -moz-transition: none;
   -webkit-transition: none;
 }
-/* line 92, ../sass/content.sass */
+/* line 88, ../sass/content.sass */
 .content .nav-tabs {
   border: solid 1px #78909C;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
   background-color: #FFFFFF;
 }
-/* line 97, ../sass/content.sass */
+/* line 93, ../sass/content.sass */
 .content .nav-tabs > li {
   background-color: #FFFFFF;
   border-top-right-radius: 10px;
@@ -401,20 +399,20 @@ table tbody tr td {
   width: 50%;
   border-bottom: 0px;
 }
-/* line 104, ../sass/content.sass */
+/* line 100, ../sass/content.sass */
 .content .nav-tabs > li > a {
   text-align: center;
   color: #37474f;
   border: solid 1px #FFFFFF;
 }
-/* line 108, ../sass/content.sass */
+/* line 104, ../sass/content.sass */
 .content .nav-tabs > li > a:hover, .content .nav-tabs > li > a:focus {
   border: solid 1px #FFFFFF;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
   background-color: #FFFFFF;
 }
-/* line 113, ../sass/content.sass */
+/* line 109, ../sass/content.sass */
 .content .nav-tabs > .active {
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
@@ -423,7 +421,7 @@ table tbody tr td {
   border-bottom: solid 1px #37474f;
   font-weight: bold;
 }
-/* line 120, ../sass/content.sass */
+/* line 116, ../sass/content.sass */
 .content .nav-tabs > .active > a {
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
@@ -432,7 +430,7 @@ table tbody tr td {
   margin: 0;
   font-weight: bold;
 }
-/* line 127, ../sass/content.sass */
+/* line 123, ../sass/content.sass */
 .content .nav-tabs > .active > a:hover, .content .nav-tabs > .active > a:focus {
   border: solid 1px #FFFFFF;
   border-top-right-radius: 10px;
@@ -441,18 +439,18 @@ table tbody tr td {
 }
 
 @media(min-width: 768px) {
-  /* line 136, ../sass/content.sass */
+  /* line 132, ../sass/content.sass */
   .content {
     padding-right: 40px;
     padding-left: 40px;
   }
 }
-/* line 140, ../sass/content.sass */
+/* line 136, ../sass/content.sass */
 .content {
   margin-top: 0;
 }
 
-/* line 142, ../sass/content.sass */
+/* line 138, ../sass/content.sass */
 .page-header {
   margin-top: 0;
 }

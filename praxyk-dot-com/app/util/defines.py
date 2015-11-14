@@ -1,6 +1,6 @@
 
-BASE_URL="http://api.praxyk.com:5000/"
-# BASE_URL="http://localhost:4001/"
+# BASE_URL="http://api.praxyk.com:5000/"
+BASE_URL="http://localhost:4001/"
 API_VERSION="v1/"
 API_BASE_ROUTE=BASE_URL+API_VERSION
 
