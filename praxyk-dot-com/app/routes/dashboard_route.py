@@ -381,4 +381,6 @@ def prettify_date(date_str) :
         mydt.replace(year=mydt.year-100)
         format = "%b %d %H:%M:%S %Y"
         return mydt.strftime(format)
+    except :
+        pass
     return date_str
