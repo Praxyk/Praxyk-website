@@ -24,7 +24,7 @@ function status_pie(state_counts, state_names, div) {
     console.log("Status Pie Being Called");
     console.log(state_counts);
     console.log(state_names);
-    colors = ["#1F5C1C", "#37474f", "#37474f", "#7D2529", "#7D2529"];
+    colors = ["#5cb85c", "#37474f", "#37474f", "#7D2529", "#7D2529"];
     var data = [{
       values: state_counts,
       labels: state_names,

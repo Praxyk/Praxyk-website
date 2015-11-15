@@ -130,9 +130,9 @@ def transactions_tab():
     sidebar = get_sidebar()
     tdict = get_transactions(page=page, page_size=page_size)
     transactions = tdict.get('transactions', []) if tdict else []
-    transactions = transactions[::-1]
     for t in transactions :
-        t['finished_at'] = "" if not  t.get('finished_at', "") else t['finished_at']
+        t['finished_at'] = "" if not  t.get('finished_at', "") else prettify_date(t['finished_at'])
+        t['created_at'] = "" if not  t.get('created_at', "") else prettify_date(t['created_at'])
     trans_cards = [render_trans_card(t) for t in transactions]
     num_transactions = len(transactions)
 
@@ -204,6 +204,9 @@ def transaction_tab(id):
 
     results = get_results(transaction['trans_id'], paginated=False)
     res_list = results.get('results')
+    for r in res_list :
+        r['finished_at'] = "" if not r.get('finished_at', "") else prettify_date(r['finished_at'])
+        r['created_at'] = "" if not r.get('created_at', "") else prettify_date(r['created_at'])
     result_cards = [render_result_card(r, transaction.get('trans_id', 0)) for r in res_list]
     active_results = [r.get('item_number', -1) for r in res_list if r['status'] in ['active', 'new']]
 
@@ -369,3 +372,10 @@ def get_params_from_url(url) :
     query_dict = parse_qs(query_raw)
     return query_dict
 
+
+def prettify_date(date_str) :
+    if not date_str : return ""
+    mydt = dt.datetime.strptime( date_str, "%Y-%m-%dT%H:%M:%S" )
+    mydt.replace(year=mydt.year-100)
+    format = "%b %d %H:%M:%S %Y"
+    return mydt.strftime(format)

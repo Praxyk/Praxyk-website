@@ -3,13 +3,13 @@
     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12" style="padding-left:0; padding-right:0" >
         <div class="cardtitle">
             <div class="row">
-                <div class="col-md-2 col-lg-2 col-sm-4 col-xs-4" style="padding:0;padding-left:10px;padding-top:7px">
+                <div class="col-md-2 col-lg-2 col-sm-4 col-xs-4" style="padding:5px;padding-left:10px;padding-right:10px;padding-top:7px">
                     <p style="text-align:left"> 
                    {{#ifCond transaction.status "finished"}}
 					<span title="Success">
                         <span class="label label-success"> 
                             #{{ transaction.trans_id}} 
-                            <i style="padding-left:10px" class="fa fa-check-square">
+                            <i style="padding-left:5px" class="fa fa-check-square">
                             </i>
                         </span>
                     </span>
@@ -18,7 +18,7 @@
 						<span title="Failed">
 							<span style="background-color:#7D2529" class="label label-warn">
 								#{{ transaction.trans_id}} 
-								<i  style="padding-left:10px"  class="fa fa-exclamation-triangle">
+								<i  style="padding-left:5px"  class="fa fa-exclamation-triangle">
 								</i>
 							</span>
 						</span>
@@ -26,7 +26,7 @@
                     {{#ifCond transaction.status 'active'}}
 						<span title="Active">
 							<span style="background-color:#37474f" class="label label-info">
-								#{{ transaction.trans_id}} <span style="padding-right:10px"> </span>
+								#{{ transaction.trans_id}} <span style="padding-right:5px"> </span>
 								<i class="fa fa-cog fa-spin">
 								</i>
 							</span>
@@ -35,7 +35,7 @@
                     {{#ifCond transaction.status 'new'}}
 						<span title="Active">
 							<span style="background-color:#37474f" class="label label-info">
-								#{{ transaction.trans_id}} <span style="padding-right:10px"> </span>
+								#{{ transaction.trans_id}} <span style="padding-right:5px"> </span>
 								<i class="fa fa-cog fa-spin">
 								</i>
 							</span>
@@ -57,42 +57,42 @@
 
     <div class="cardbody" style="text-align:left">
         <div class="row">
-            <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+            <div class="col-md-6 col-lg-5 col-sm-12 col-xs-12">
               <ul class="list-unstyled">
                 <li>
-                    <div class="col-md-4 col-lg-4 col-sm-6 col-xs-5">
+                    <div class="col-md-4 col-lg-6 col-sm-6 col-xs-5">
                         Service :
                     </div>
-                    <div class="col-md-8 col-lg-8 col-sm-6 col-xs-7">
+                    <div class="col-md-8 col-lg-6 col-sm-6 col-xs-7">
                         {{transaction.service}}
                     </div>
                 </li>
                 <li>
-                    <div class="col-md-4 col-lg-4 col-sm-6 col-xs-5">
+                    <div class="col-md-4 col-lg-6 col-sm-6 col-xs-5">
                         Model :
                     </div>
-                    <div class="col-md-8 col-lg-8 col-sm-6 col-xs-7">
+                    <div class="col-md-8 col-lg-6 col-sm-6 col-xs-7">
                         {{transaction.model}}
                     </div>
                 </li>
                 <li>
-                    <div class="col-md-4 col-lg-4 col-sm-6 col-xs-5">
+                    <div class="col-md-4 col-lg-6 col-sm-6 col-xs-5">
                         Files : 
                     </div>
-                    <div class="col-md-8 col-lg-8 col-sm-6 col-xs-7">
+                    <div class="col-md-8 col-lg-6 col-sm-6 col-xs-7">
                         {{transaction.uploads_success}}
                     </div>
                 </li>
               </ul>
             </div>
 
-            <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+            <div class="col-md-6 col-lg-7 col-sm-12 col-xs-12">
               <ul class="list-unstyled">
                 <li>
-                    <div class="col-md-4 col-lg-4 col-sm-6 col-xs-5">
+                    <div class="col-md-4 col-lg-5 col-sm-6 col-xs-5">
                         Size : 
                     </div>
-                    <div class="col-md-8 col-lg-8 col-sm-6 col-xs-7">
+                    <div class="col-md-8 col-lg-7 col-sm-6 col-xs-7">
                         {{ transaction.size_total_KB}} KB
                     </div>
                 </li>

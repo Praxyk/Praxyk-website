@@ -138,7 +138,8 @@
              status_pie({{ state_counts|safe }}, {{ state_names|safe }}, "transaction-status-pie");
 			 status_bar({{ date_counts|safe }}, {{ dates|safe }}, "transaction-date-counts");
 		  }
-		window.resize = OnResize()
+		window.resize = OnResize();
+		document.resize = OnResize();
 
          // render_trans({{ transactions[0]|safe }}, function(html) { $("#new_trans_card").prepend(html); console.log("FUKC"); console.log(html); });
         var transaction = {{ newest_trans|safe }}

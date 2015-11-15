@@ -5,12 +5,11 @@
             <div class="row">
 
                 <div class="col-md-2 col-lg-2 col-sm-4 col-xs-4" style="padding:0;padding-left:10px;padding-top:7px">
-                    <p style="text-align:left"> 
                     {% if result.status == "finished": %}
                     <span title="Success">
                         <span class="label label-success"> 
                             {{ trans_id }}.{{ result.item_number }} 
-                            <i style="padding-left:10px" class="fa fa-check-square">
+                            <i style="padding-left:5px" class="fa fa-check-square">
                             </i>
                         </span>
                     </span>
@@ -18,7 +17,7 @@
                     <span title="Failed">
                         <span style="background-color:#7D2529" class="label label-warn">
                             {{ trans_id }}.{{ result.item_number }} 
-                            <i  style="padding-left:10px"  class="fa fa-exclamation-triangle">
+                            <i  style="padding-left:5px"  class="fa fa-exclamation-triangle">
                             </i>
                         </span>
                     </span>
@@ -26,12 +25,12 @@
                     <span title="Active">
                         <span style="background-color:#37474f" class="label label-info">
                             {{ trans_id }}.{{ result.item_number }} 
+							<span style="padding-right:5px"> </span>
                             <i class="fa fa-cog fa-spin">
                             </i>
                         </span>
                     </span>
                     {% endif %}
-                    </p>
                 </div>
 
                 <div class="pull-left col-md-8 col-lg-8 col-sm-6 col-xs-6" >
@@ -47,14 +46,14 @@
 			  <i class="fa fa-caret-down"></i>
 				 Meta-Data
 			</a>
-			<a class="btn btn-primary" id="result-toggle-{{ result.item_number}}" data-target="#predictions-collapse-{{ result.item_number }}" data-toggle="collapse">
+			<a class="btn btn-primary pull-right" id="result-toggle-{{ result.item_number}}" data-target="#predictions-collapse-{{ result.item_number }}" data-toggle="collapse">
 			  <i class="fa fa-caret-down"></i>
 				 Predictions
 			</a>
 		</div>
         <div class="row" >
 			<br>
-            <div class="col-md-12 col-lg-6 col-sm-12 col-xs-12">
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
 			<div class="collapse collapse-fade" id="metadata-collapse-{{ result.item_number }}" >
             <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
 				 Meta-Data :
@@ -123,10 +122,4 @@
   </div> <!-- end card -->
 
 {% block scripts %}
-<script>
-$("a:regex(class, result*)").click(function(e) {
-	$(this).children("i")[0].toggleClass("caret-down").toggleClass("caret-up");
-
-});
-</script>
 {% endblock %}

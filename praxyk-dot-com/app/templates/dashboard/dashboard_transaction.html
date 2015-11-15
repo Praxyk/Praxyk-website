@@ -57,28 +57,32 @@
 					<div id="new_trans_card" class="col-md-12 col-sm-12 col-lg-12"></div>
 			</div>
 		</div>
-
-        <hr>
-		  <h2 style="text-align:center"> 
-            Predictions	
-		  </h2>
-
-        <div class="row">
-
-            <div class="col-sm-12 col-md-12 col-lg-12">
-            {% for result_card  in result_cards %} 
-                <div class="row">
-                <div class="col-sm-12 col-md-12 col-lg-12">
-                <div class="col-sm-12 col-md-12 col-lg-12">
-                    {{ result_card|safe }}
-                </div>
-                </div>
-                </div>  <!-- end row -->
-            {% endfor %}
-		  </div>
+	</div>
 
 
-      </div>
+    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
+		<div class="card">
+			<div class="cardtitle">
+			  <h3 style="text-align:center">
+				  <strong>Predictions</strong> 
+			  </h3>
+			</div>
+
+		<div class"cardbody" style="background-color:#E0E0E0">
+
+		{% for result_card  in result_cards %} 
+			<div class="col-sm-12 col-md-12 col-xs-12 col-lg-6">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				{{ result_card|safe }}
+				</div>
+			</div>
+		{% endfor %}
+
+		</div>
+		</div>
+	</div>
+
+
         
     </div>
     </div>
@@ -97,10 +101,10 @@
 		results_spin(transaction.trans_id, active_results, "{{ token }}", "card");
     }, 50);
 
-	update_result_pie("{{ token }}", transaction.trans_id);
+	// update_result_pie("token", transaction.trans_id);
 	function OnResize() {
 		 //status_pie({{ state_counts|safe }}, {{ state_names|safe }}, "results-status-pie");
-		 update_result_pie("{{ token }}", transaction.trans_id);
+		 // update_result_pie(" token ", transaction.trans_id);
 	  }
 	window.resize = OnResize()
 </script>

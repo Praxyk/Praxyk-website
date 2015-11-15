@@ -5,6 +5,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="/favicon.ico">
 
     <link href="/static/css/styles.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="/static/css/sidebar.css">
@@ -60,7 +61,7 @@
 {% block navbar %}{% endblock %}
 </div>
 
-<body onload="OnLoad()" onresize="OnResize()">
+<body onload="OnLoad()">
 	<div id="wrapper">
 		{% block sidebar %}{% endblock %}
 			<div class="page-content-wrapper">
@@ -68,7 +69,7 @@
 					<div class="container-fluid">
 						<div id="sidebar-toggle" class="fixed hidden-md hidden-lg hidden-xl hidden-sm hidden-xs">
                             <br>
-						<a href="#menu-toggle" id="menu-toggle-content"><i class="fa fa-bars fa-2x"></i></a>
+						<a href="#menu-toggle" id="menu-toggle-content"><i style="color:white" class="fa fa-bars fa-2x"></i></a>
 						</div>
 						{% block content %}{% endblock %}
 					</div>
@@ -93,7 +94,7 @@ function showsidebar() {
     $("#sidebar-toggle").addClass("hidden-xl")
     $("#sidebar-toggle").addClass("hidden-lg")
     setTimeout(function (){
-        window.onresize()
+		OnResize();
     }, 350);
 }
 
@@ -106,7 +107,7 @@ function hidesidebar() {
     $("#sidebar-toggle").removeClass("hidden-xl")
     $("#sidebar-toggle").removeClass("hidden-lg")
     setTimeout(function (){
-        window.onresize()
+		OnResize();
     }, 350);
 }
 $("#menu-toggle-inline").click(function(e) {
@@ -119,7 +120,7 @@ $("#menu-toggle-inline").click(function(e) {
     $("#sidebar-toggle").toggleClass("hidden-xl")
     $("#sidebar-toggle").toggleClass("hidden-lg")
     setTimeout(function (){
-        window.onresize()
+		OnResize();
     }, 350);
 });
 $("#menu-toggle-content").click(function(e) {
@@ -132,7 +133,7 @@ $("#menu-toggle-content").click(function(e) {
     $("#sidebar-toggle").toggleClass("hidden-xl")
     $("#sidebar-toggle").toggleClass("hidden-lg")
     setTimeout(function(){
-        window.onresize()
+		OnResize();
     }, 350);
 });
 $("#menu-toggle-nav").click(function(e) {
@@ -145,7 +146,7 @@ $("#menu-toggle-nav").click(function(e) {
     $("#sidebar-toggle").toggleClass("hidden-xl")
     $("#sidebar-toggle").toggleClass("hidden-lg")
     setTimeout(function(){
-        window.onresize()
+		OnResize();
     }, 350);
 });
 
