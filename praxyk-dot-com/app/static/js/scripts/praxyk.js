@@ -2,7 +2,7 @@
 
 //api urls
 // var base_api_url= "http://api.praxyk.com:5000/v1/";
- var base_api_url= "http://localhost:4001/v1/"  
+var base_api_url= "http://localhost:4001/v1/"  
 var pod_api_url = base_api_url + "pod/";
 var tlp_api_url = base_api_url + "tlp/";
 var token_api_url = base_api_url + "tokens/";
@@ -16,15 +16,22 @@ function push_trans(transaction, token) {
         if(transaction.status == "active" || transaction.status == "new") {
             trans_spin(transaction.trans_id, token, "card");
         }
-        console.log(html);
     })
 }
 
 function push_trans_button(transaction) {
     render_trans_button(transaction, function(html) {
-        console.log("#new_trans_button");
+        // console.log("#new_trans_button");
         $("#new_trans_button").append(html)
-        console.log(html)
+    })
+}
+
+
+function push_result_card(result, trans_id) {
+    render_result_card(result, trans_id, function(html) {
+        // console.log("#new_result_card");
+        $("#new_result_card").append(html)
+        // console.log(html)
     })
 }
 
@@ -34,26 +41,57 @@ function render_trans_card(transaction, callback) {
     return render_trans(transaction, url, callback);
 }
 
+function render_result_card(result, trans_id, callback) {
+    url = "/static/jstemplates/result_card.html";
+    return render_result(result, trans_id, url, callback);
+}
+
 function render_trans_button(transaction, callback) {
     url = "/static/jstemplates/trans_button.html";
     return render_trans(transaction, url, callback);
 }
 
 function render_trans(transaction, url, callback) {
-    console.log(transaction)
-    console.error(url);
     Handlebars.registerHelper('ifCond', function(v1, v2, options) {
           if(v1 === v2) {
                   return options.fn(this);
                     }
             return options.inverse(this);
     });
+	Handlebars.registerHelper("tcard", function(id) {
+		return "trans-card-" + (id);
+	});
+	Handlebars.registerHelper("tbutton", function(id) {
+		return "trans-button-" + (id);
+	});
+	Handlebars.registerHelper("rcard", function(id) {
+		return "result-card-" + (id);
+	}); 
     $("#hidden-loader").load(url, function(result) {
-            console.log(result);
             var template = Handlebars.compile(result);
 		    transaction = date_prettify(transaction)
             var html    = template({transaction : transaction});
             callback(html)
+            return html
+    });
+}
+
+function render_result(result, trans_id, url, callback) {
+    // console.log(result)
+    Handlebars.registerHelper('ifCond', function(v1, v2, options) {
+          if(v1 === v2) {
+                  return options.fn(this);
+			}
+            return options.inverse(this);
+    });
+	Handlebars.registerHelper("rcard", function(id) {
+		return "result-card-" + (id);
+	}); 
+    $("#hidden-loader").load(url, function(res) {
+            var template = Handlebars.compile(res);
+		    result = date_prettify(result)
+            var html  = template({result : result, trans_id : trans_id });
+            callback(html, result)
             return html
     });
 }
@@ -72,10 +110,10 @@ function trans_spin(id, token, type, count) {
     if (typeof(count)==='undefined') count = 1;
 
     get_transaction(token, id, function(result) {
-         console.log(result)
+         // console.log(result)
 
          var json = result //$.parseJSON(result);
-         console.log("Spin Again")
+         // console.log("Spin Again")
 
         if(!json) {
             return false;
@@ -83,24 +121,24 @@ function trans_spin(id, token, type, count) {
         if(json.transaction.status == "finished" || json.transaction.status == "failed" ) {
             if(type=="button") {
                 render_trans_button(json.transaction, function(html) { 
-                    console.log("#"+id)
+                    // console.log("#trans-button-"+id)
                     //$("#new_trans_card").prepend(html)
 
                     setTimeout(function (){
-                        $("#"+id).after(html);
-                        $("#"+id).remove()
-                        console.log("FINISHED!")
+                        $("#trans-button-"+id).after(html);
+                        $("#trans-button-"+id).remove()
+                        // console.log("FINISHED!")
                     }, 100);
                 })
             }else if(type=="card") {
                 render_trans_card(json.transaction, function(html) { 
-                    console.log("#"+id)
+                    // console.log("#trans-card-"+id)
                     //$("#new_trans_card").prepend(html)
 
                     setTimeout(function (){
-                        $("#"+id).after(html);
-                        $("#"+id).remove()
-                        console.log("FINISHED!")
+                        $("#trans-card-"+id).after(html);
+                        $("#trans-card-"+id).remove()
+                        // console.log("FINISHED!")
                     }, 100);
                 })
             }
@@ -109,12 +147,66 @@ function trans_spin(id, token, type, count) {
 
         setTimeout(function (){
             count = count+1;
-            console.log(count);
+            // console.log(count);
             return trans_spin(id, token, type, count++);
         }, Math.min(100+200*count, 5000));
 
     });
 
+}
+
+
+
+function results_spin(trans_id, active_results, token, type, count) {
+    if (typeof(count)==='undefined') count = 1;
+    if(active_results.length == 0) {
+        update_result_pie(token, trans_id);
+        return true;
+    }
+
+    get_results(token, trans_id, function(raw_results) {
+
+        var json = raw_results //$.parseJSON(result);
+
+        if(!json || !json.results) {
+            return false;
+        }
+        var results = json.results;
+        
+        for(y = 0; y < results.length; y++) {
+            // console.log("Iterating over Result :");
+            if(active_results.indexOf(results[y].item_number) !== -1) {
+                // console.log("Active Results Match Found");
+                if(results[y].status === "finished" || results[y].status === "failed") {
+                    x = y;
+                    // console.log("Status finished/failed : ("+results[x].status+")");
+                    // console.log("Active Results");
+                    active_results.splice(active_results.indexOf(results[x].item_number), 1);
+                    // console.log(active_results)
+                    render_result_card(results[x], trans_id, function(html, result) { 
+                        // console.log("#result-card-"+result.item_number)
+                        // console.log("Changing Card!");
+                        // console.log(result);
+                        $("#result-card-"+result.item_number).replaceWith(html);
+                        update_result_pie(token, trans_id);
+                        // console.log("FINISHED!")
+                    });
+                }
+            }
+        }
+
+        if(active_results.length == 0) {
+            return true;
+        }
+
+        setTimeout(function (){
+            count = count+1;
+            // console.log(count);
+            return results_spin(trans_id, active_results, token, type, count++);
+        }, (active_results), Math.min(100+200*count, 5000));
+
+
+    });
 }
 
 
@@ -167,7 +259,7 @@ function make_request(service, token) {
 
         do_pod(model, token, files, name, $("#upload_progress"), function(result) {
             var json = $.parseJSON(result);
-            console.log(json)
+            // console.log(json)
             if (json.transaction) {
                 // $("#upload_success").removeClass("hidden");
                 $("#upload_failure").addClass("hidden");
@@ -267,6 +359,14 @@ function get_transaction(token,id,callback){
 
 function get_all_transactions(token,userid,callback){
 	var url = transaction_api_url + "?user_id=" + userid.toString() + "&pagination=False&token=" + token;
+	return api_call(url, "GET",null,null,null,function(result) {
+		var json = $.parseJSON(result);
+		return callback(json);
+	});
+}
+
+function get_results(token,trans_id,callback){
+	var url = results_api_url + trans_id + "?pagination=False&token=" + token;
 	return api_call(url, "GET",null,null,null,function(result) {
 		var json = $.parseJSON(result);
 		return callback(json);

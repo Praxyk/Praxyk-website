@@ -51,7 +51,7 @@ def dashboard():
         ingress_str = "{0:.2f}".format(total_ingress)+" KB"
 
     cost = "{0:.2f}".format(total_ingress*cost_per_KB)
-    state_names = ['active', 'canceled', 'finished', 'failed']
+    state_names = ['finished', 'active', 'new', 'failed', 'canceled']
     state_counts = [len([x for x in transactions if x['status'] == state]) for state in state_names]
     trans_card = ""
 
@@ -143,6 +143,11 @@ def transactions_tab():
     prev_page = tdict.get('prev_page', None)
     first_page = tdict.get('first_page', None)
     last_page = tdict.get('last_page', None)
+
+    active_transactions = [x.get('trans_id', -1) for x in transactions if x.get('status', "") in ['active', 'new']]
+    print(transactions)
+    print(t['status'] for t in transactions)
+    print(active_transactions)
     
     return render_template('/dashboard/dashboard_transactions.html',
                            token=session['token'],
@@ -150,6 +155,7 @@ def transactions_tab():
                            email=session['email'],
                            navbar=navbar,
                            all_transactions=transactions,
+                           active_transactions=active_transactions,
                            num_transactions=num_transactions,
                            trans_cards = trans_cards,
                            page=page, next_page=next_page, prev_page=prev_page,
@@ -196,12 +202,15 @@ def transaction_tab(id):
     else: 
         ingress_str = "{0:.2f}".format(transaction['size_total_KB'])+" KB"
 
-    results = get_results(transaction['trans_id'], page=1, page_size=25)
-    page = results.get('page') if results else {}
-    res_list = page.get('results', []) if page else []
+    results = get_results(transaction['trans_id'], paginated=False)
+    res_list = results.get('results')
     result_cards = [render_result_card(r, transaction.get('trans_id', 0)) for r in res_list]
+    active_results = [r.get('item_number', -1) for r in res_list if r['status'] in ['active', 'new']]
 
     transaction['finished_at'] = "" if not transaction.get('finished_at', None) else transaction['finished_at']
+
+    state_names = ['active', 'canceled', 'finished', 'failed']
+    state_counts = [len([x for x in res_list if x['status'] == state]) for state in state_names]
 
     return render_template('/dashboard/dashboard_transaction.html',
                            token=session['token'],
@@ -214,29 +223,10 @@ def transaction_tab(id):
                            trans_card = trans_card,
                            result_cards = result_cards,
                            ingress_str=ingress_str,
+                           active_results=active_results,
                            prev=prev, nxt=nxt,
-                           sidebar=sidebar)
-
-
-@dashboard_route.route('/dashboard/results/<int:id>', methods=['GET'])
-def results_tab(id):
-    error = None
-    if not session.get('token') or not session.get('user') :
-        return redirect(url_for('users_route.login_page', _external=True))
-    navbar = get_dashboard_navbar()
-    sidebar = get_sidebar()
-    transaction = get_transaction(id)
-    if not transaction :
-        abort(404)
-    results = get_results(id, page=1, page_size=25)
-    return render_template('/dashboard/dashboard_result.html',
-                           token=session['token'],
-                           user=session['user'],
-                           email=session['email'],
-                           navbar=navbar,
-                           results=results,
-                           trans_id=id,
-                           transaction=transaction,
+                           state_counts=state_counts,
+                           state_names=state_names,
                            sidebar=sidebar)
 
 
@@ -353,23 +343,8 @@ def get_results(trans_id, paginated=True, page=1, page_size=15, model=None, serv
 
     response = json.loads(r.text)
 
-    print("Results Response ID %s"%str(trans_id)+"\n\n")
-    print(json.dumps(response))
-    print("\n\n\n")
-
     if not response or not response.get('code') == 200 :
         return []
-
-    if paginated :
-        page = response.get('page', None)
-        if page :
-            results  = page.get('results', [])
-            results = reversed(results)
-            response['results'] = results
-    else :
-        results = response.get('results', [])
-        results = reversed(results)
-        response['results'] = results
 
     return response
 

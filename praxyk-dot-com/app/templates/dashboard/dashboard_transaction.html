@@ -16,7 +16,7 @@
 <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" style="padding:0">
 <br>
 
-    <div class="col-lg-offset-1 col-md-12 col-sm-12 col-lg-10 col-xs-12">
+    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12">
 		<div class="row">
 		<div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
 			<div class="card">
@@ -51,7 +51,7 @@
 	</div>
 
 
-    <div class="col-lg-offset-1 col-md-12 col-sm-12 col-lg-10 col-xs-12" style="padding:0">
+    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12" style="padding:0">
 		<div class="row">
 			<div class="col-md-12 col-lg-8 col-sm-12 col-xs-12">
 					<div id="new_trans_card" class="col-md-12 col-sm-12 col-lg-12"></div>
@@ -65,7 +65,11 @@
                     <h5 style="text-align:center" >Transaction States</h5>
                   </div>
                   <div class="cardbody">
-                    <div id="tester"></div>
+					{% if result_cards %}
+						<div id="results-status-pie"></div>
+					{% else %}
+						<p> No results to show. </p>
+					{% endif %}
                   </div>
                 </div>
             </div>
@@ -101,10 +105,23 @@
 
 {% block scripts %}
 <script>
+
 	 var transaction = {{ transaction|safe }};
 	 setTimeout(function(){                                                                                                                      
 		push_trans(transaction, "{{ token }}");
 	 }, 50);
+
+	var active_results = {{active_results|safe}};
+	setTimeout(function() {
+		results_spin(transaction.trans_id, active_results, "{{ token }}", "card");
+    }, 50);
+
+	update_result_pie("{{ token }}", transaction.trans_id);
+	function OnResize() {
+		 //status_pie({{ state_counts|safe }}, {{ state_names|safe }}, "results-status-pie");
+		 update_result_pie("{{ token }}", transaction.trans_id);
+	  }
+	window.resize = OnResize()
 </script>
 		
 {% endblock %}

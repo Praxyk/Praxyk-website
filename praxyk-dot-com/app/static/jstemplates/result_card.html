@@ -1,36 +1,50 @@
-<div id="result-card-{{ result.item_number }}">
+<div id={{#rcard result.item_number}}{{/rcard}}>
 <div class="card" style="y-overflow:scroll">
     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12" style="padding-left:0; padding-right:0" >
         <div class="cardtitle">
             <div class="row">
 
                 <div class="col-md-2 col-lg-2 col-sm-4 col-xs-4" style="padding:0;padding-left:10px;padding-top:7px">
-                    <p style="text-align:left"> 
-                    {% if result.status == "finished": %}
-                    <span title="Success">
+                    <p style="text-align:left">
+                   {{#ifCond result.status "finished"}}
+					<span title="Success">
                         <span class="label label-success"> 
                             {{ trans_id }}.{{ result.item_number }} 
                             <i style="padding-left:10px" class="fa fa-check-square">
                             </i>
                         </span>
                     </span>
-                    {% elif result.status == "failed": %}
-                    <span title="Failed">
-                        <span style="background-color:#7D2529" class="label label-warn">
-                            {{ trans_id }}.{{ result.item_number }} 
-                            <i  style="padding-left:10px"  class="fa fa-exclamation-triangle">
-                            </i>
-                        </span>
-                    </span>
-                    {% elif result.status in ['active', 'new'] : %}
-                    <span title="Active">
-                        <span style="background-color:#37474f" class="label label-info">
-                            {{ trans_id }}.{{ result.item_number }} 
-                            <i class="fa fa-cog fa-spin">
-                            </i>
-                        </span>
-                    </span>
-                    {% endif %}
+                    {{/ifCond}}
+                    {{#ifCond result.status "failed"}}
+						<span title="Failed">
+							<span style="background-color:#7D2529" class="label label-warn">
+                                {{ trans_id }}.{{ result.item_number }} 
+								<i  style="padding-left:10px"  class="fa fa-exclamation-triangle">
+								</i>
+							</span>
+						</span>
+                    {{/ifCond}}
+                    {{#ifCond result.status 'active'}}
+						<span title="Active">
+							<span style="background-color:#37474f" class="label label-info">
+                                {{ trans_id }}.{{ result.item_number }} 
+								<span style="padding-right:10px"> </span>
+								<i class="fa fa-cog fa-spin">
+								</i>
+							</span>
+						</span>
+                    {{/ifCond}}
+                    {{#ifCond result.status 'new'}}
+						<span title="Active">
+							<span style="background-color:#37474f" class="label label-info">
+                                {{ trans_id }}.{{ result.item_number }} 
+								<span style="padding-right:10px"> </span>
+								<i class="fa fa-cog fa-spin">
+								</i>
+							</span>
+						</span> 
+                    {{/ifCond}}
+
                     </p>
                 </div>
 
@@ -72,11 +86,11 @@
                         Finished : 
                     </div>
                     <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                    {% if result.finished_at %}
+                    {{#if result.finished_at}}
                         {{ result.finished_at}}
-                    {% else %}
+                    {{ else }}
                         N/A
-                     {% endif %}
+                    {{/if}}
                     </div>
                 </li>
               </ul>
@@ -102,31 +116,22 @@
 			Predictions : 
 				<br>
 					<ul class="list-unstyled">
-					{% for res in result.prediction %}
+					{{#each result.prediction}}
 					<div class="row">
 						<li>
 						<div class="col-sm-4 col-md-4 col-lg-4">
-							{{ res }}
+							{{@key}}:
 						</div>
 						<div class="col-sm-8 col-md-8 col-lg-8" style=text-align:left">
-							{{ result.prediction[res] }}
+							{{this}}
 						</div>
 						</li>
 					</div>
-					{% endfor %}
+					{{/each}}
 					</ul>
 			</div>
         </div> <!-- end cardbody -->
     </div> <!-- end col -->
         </div>
   </div> <!-- end card -->
-  </div> <!-- end card -->
-
-{% block scripts %}
-<script>
-$("a:regex(class, result*)").click(function(e) {
-	$(this).children("i")[0].toggleClass("caret-down").toggleClass("caret-up");
-
-});
-</script>
-{% endblock %}
+</div> <!-- end card -->

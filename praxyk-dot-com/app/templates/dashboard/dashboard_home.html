@@ -75,7 +75,7 @@
                     <h5 style="text-align:center" >Transaction States</h5>
                   </div>
                   <div class="cardbody">
-                    <div id="tester"></div>
+                    <div id="transaction-status-pie"></div>
                   </div>
                 </div>
             </div>
@@ -93,7 +93,7 @@
                     <h5 style="text-align:center" >Request History</h5>
                   </div>
                   <div class="cardbody">
-                    <div id="date-counts"></div>
+                    <div id="transaction-date-counts"></div>
                   </div>
                 </div>
             </div>
@@ -131,14 +131,14 @@
 
 {% block scripts %}
     <script> 
-        transaction_status_pie({{ state_counts|safe }}, {{ state_names|safe }});
-        transaction_status_bar({{ date_counts|safe }}, {{ dates|safe }});
+		status_pie({{ state_counts|safe }}, {{ state_names|safe }}, "transaction-status-pie");
+        status_bar({{ date_counts|safe }}, {{ dates|safe }}, "transaction-date-counts");
 
-
-         window.resize = function() {
-             transaction_status_pie({{ state_counts|safe }}, {{ state_names|safe }});
-             transaction_status_bar({{ date_counts|safe }}, {{ dates|safe }});
-          };
+		function OnResize() {
+             status_pie({{ state_counts|safe }}, {{ state_names|safe }}, "transaction-status-pie");
+			 status_bar({{ date_counts|safe }}, {{ dates|safe }}, "transaction-date-counts");
+		  }
+		window.resize = OnResize()
 
          // render_trans({{ transactions[0]|safe }}, function(html) { $("#new_trans_card").prepend(html); console.log("FUKC"); console.log(html); });
         var transaction = {{ newest_trans|safe }}

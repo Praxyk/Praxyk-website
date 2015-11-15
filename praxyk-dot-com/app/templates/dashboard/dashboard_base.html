@@ -83,19 +83,6 @@
     <div id="hidden-loader" class="hidden"></div>
 <!-- Menu Toggle Script -->
 <script src="/static/js/scripts/graphs.js"></script>
-<script> 
-function OnLoad() {
-    transaction_status_pie({{ state_counts|safe }}, {{ state_names|safe }});
-    transaction_status_bar({{ date_counts|safe }}, {{ dates|safe }});
-}
-
-function OnResize() {
-     transaction_status_pie({{ state_counts|safe }}, {{ state_names|safe }});
-     transaction_status_bar({{ date_counts|safe }}, {{ dates|safe }});
-  }
-window.resize = OnResize()
-
-</script>
 <script>
 function showsidebar() {
 	deleteCookie('show_sidebar')

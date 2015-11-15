@@ -65,7 +65,10 @@
 
             <div class="row">
                 <div class="col-lg-offset-1 col-md-12 col-lg-10 col-sm-12 col-xs-12">
-                    <div id="new_trans_card" class="col-md-12 col-sm-12 col-lg-12"></div>
+                    <!-- <div id="new_trans_card" class="col-md-12 col-sm-12 col-lg-12"></div> -->
+					{% for card in trans_cards %}
+						{{ card|safe }}
+					{% endfor %}
                 </div>
             </div> <!-- end row -->
         {% endif %}
@@ -75,11 +78,11 @@
 
 {% block scripts %}
     <script> 
-	   transactions = {{ all_transactions|safe }};
-        setTimeout(function (){                                                                                                                      
-			transactions.map( function(item) {push_trans(item, "{{ token }}"); });
-        }, 50);
+	   transactions = {{ active_transactions|safe }};
 
+        setTimeout(function (){                                                                                                                      
+			transactions.map( function(item) {trans_spin(item, "{{ token }}", "card"); });
+        }, 50);
 
     </script>
 {% endblock %}
