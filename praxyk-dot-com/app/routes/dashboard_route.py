@@ -40,11 +40,11 @@ def dashboard():
     num_transactions = len([] if not transactions else transactions)
     commands = set([trans['command_url'] for trans in transactions])
     command_counts = {url : 0 for url in commands}
-    for trans in transactions :
-        command_counts[trans['command_url']] += 1
     total_ingress = 0
     for trans in transactions :
+        command_counts[trans['command_url']] += 1
         total_ingress += trans['size_total_KB']
+
     if total_ingress > 2000 : # > 2MB
         ingress_str = "{0:.2f}".format(total_ingress/1000.0)+" MB"
     else: 
@@ -52,6 +52,7 @@ def dashboard():
 
     cost = "{0:.2f}".format(total_ingress*cost_per_KB)
     state_names = ['finished', 'active', 'new', 'failed', 'canceled']
+    # @TODO - make this more efficient, currently loops over all user transactions 5 times
     state_counts = [len([x for x in transactions if x['status'] == state]) for state in state_names]
     trans_card = ""
 
@@ -61,9 +62,6 @@ def dashboard():
         newest_trans = transactions[0]
 
         trans_card = render_trans_card(transactions[0])
-        dates = list(set([x['created_at'].split("T")[0] for x in transactions]))
-        dates.sort()
-        date_map = { dates[x]:x for x in range(0, len(dates)) }
 
         dates2 = list(set([dateutil.parser.parse(x['created_at'].split("T")[0]) for x in transactions]))
         dates2.sort()
@@ -130,11 +128,16 @@ def transactions_tab():
     sidebar = get_sidebar()
     tdict = get_transactions(page=page, page_size=page_size)
     transactions = tdict.get('transactions', []) if tdict else []
+    trans_cards = []
+    num_transactions = 0
+    active_transactions = []
     for t in transactions :
         t['finished_at'] = "" if not  t.get('finished_at', "") else prettify_date(t['finished_at'])
         t['created_at'] = "" if not  t.get('created_at', "") else prettify_date(t['created_at'])
-    trans_cards = [render_trans_card(t) for t in transactions]
-    num_transactions = len(transactions)
+        trans_cards.append(render_trans_card(t))
+        num_transactions += 1
+        if t.get('status', "") in ['active', 'new'] :
+            active_transctions.append(t.get('trans_id', -1))
 
     if not tdict or isinstance(tdict, list) :
         tdict = {}
@@ -144,11 +147,6 @@ def transactions_tab():
     first_page = tdict.get('first_page', None)
     last_page = tdict.get('last_page', None)
 
-    active_transactions = [x.get('trans_id', -1) for x in transactions if x.get('status', "") in ['active', 'new']]
-    print(transactions)
-    print(t['status'] for t in transactions)
-    print(active_transactions)
-    
     return render_template('/dashboard/dashboard_transactions.html',
                            token=session['token'],
                            user=session['user'],
