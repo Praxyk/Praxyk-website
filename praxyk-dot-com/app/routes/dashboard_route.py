@@ -375,8 +375,10 @@ def get_params_from_url(url) :
 
 def prettify_date(date_str) :
     if not date_str : return ""
-    date_str = date_str.replace("T", " ");
-    mydt = dt.datetime.strptime( date_str, "%Y-%m-%d %H:%M:%S" )
-    mydt.replace(year=mydt.year-100)
-    format = "%b %d %H:%M:%S %Y"
-    return mydt.strftime(format)
+    try :
+        date_str = date_str.replace("T", " ");
+        mydt = dt.datetime.strptime( date_str, "%Y-%m-%d %H:%M:%S" )
+        mydt.replace(year=mydt.year-100)
+        format = "%b %d %H:%M:%S %Y"
+        return mydt.strftime(format)
+    return date_str
