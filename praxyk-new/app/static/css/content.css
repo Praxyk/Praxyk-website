@@ -1,0 +1,178 @@
+@import url(https://fonts.googleapis.com/css?family=PT+Sans+Narrow|Karla|Maven+Pro|Open+Sans|Roboto:400,300|Lato|PT+Sans|Ubuntu|Cabin);
+/* line 21, ../sass/_base.sass */
+.page-header {
+  color: #37474f;
+}
+
+/* line 24, ../sass/_base.sass */
+body {
+  background: #EEF2F1;
+  background: #78909C;
+  font-family: "Open Sans", sans-serif;
+  font-family: "Karla";
+  font-weight: normal;
+  height: 100%;
+  overflow: auto;
+}
+
+/* line 7, ../sass/content.sass */
+.container-home .container-fluid {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1200px;
+  height: 100%;
+}
+
+/* line 14, ../sass/content.sass */
+.container-navbar .container-fluid {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1200px;
+}
+
+/* line 21, ../sass/content.sass */
+.container-dashboard .container-fluid {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1900px;
+  height: 100%;
+}
+
+/* line 28, ../sass/content.sass */
+.content {
+  padding: 0px;
+}
+/* line 31, ../sass/content.sass */
+.content h1 {
+  font-size: 48px;
+  font-weight: bold;
+  color: #37474f;
+}
+/* line 36, ../sass/content.sass */
+.content h2 {
+  font-size: 40px;
+}
+/* line 39, ../sass/content.sass */
+.content h3 {
+  font-size: 32px;
+}
+/* line 42, ../sass/content.sass */
+.content h4 {
+  font-size: 24px;
+}
+/* line 45, ../sass/content.sass */
+.content h5 {
+  font-size: 17px;
+  font-weight: bold;
+}
+/* line 49, ../sass/content.sass */
+.content .login-register-box {
+  background-color: #FFF;
+  border: solid 1px #78909C;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+/* line 60, ../sass/content.sass */
+.content .login-register-box > li > a {
+  color: #EEF0F2;
+}
+/* line 61, ../sass/content.sass */
+.content .login-register-box > li > a:hover, .content .login-register-box > li > a:focus {
+  color: #EEF0F2;
+}
+/* line 65, ../sass/content.sass */
+.content .login-register-box .btn {
+  width: 100%;
+}
+/* line 68, ../sass/content.sass */
+.content fieldset {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+/* line 74, ../sass/content.sass */
+.content fieldset .control-group .controls input {
+  width: 100%;
+  height: 30px;
+  font-size: 14px;
+  padding: 5px;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  -moz-transition: none;
+  -webkit-transition: none;
+}
+/* line 87, ../sass/content.sass */
+.content .nav-tabs {
+  border: solid 1px #78909C;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  background-color: #FFF;
+}
+/* line 92, ../sass/content.sass */
+.content .nav-tabs > li {
+  background-color: #FFF;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border: solid 1px #FFF;
+  width: 50%;
+  border-bottom: 0px;
+}
+/* line 99, ../sass/content.sass */
+.content .nav-tabs > li > a {
+  text-align: center;
+  color: #37474f;
+  border: solid 1px #FFF;
+}
+/* line 103, ../sass/content.sass */
+.content .nav-tabs > li > a:hover, .content .nav-tabs > li > a:focus {
+  border: solid 1px #FFF;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  background-color: #FFF;
+}
+/* line 108, ../sass/content.sass */
+.content .nav-tabs > .active {
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  background-color: #FFF;
+  border: solid 1px #FFF;
+  border-bottom: solid 1px #37474f;
+  font-weight: bold;
+}
+/* line 115, ../sass/content.sass */
+.content .nav-tabs > .active > a {
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border: solid 1px #FFF;
+  background-color: #FFF;
+  margin: 0;
+  font-weight: bold;
+}
+/* line 122, ../sass/content.sass */
+.content .nav-tabs > .active > a:hover, .content .nav-tabs > .active > a:focus {
+  border: solid 1px #FFF;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  background-color: #FFF;
+}
+
+@media(min-width: 768px) {
+  /* line 131, ../sass/content.sass */
+  .content {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}
+/* line 135, ../sass/content.sass */
+.content {
+  margin-top: 0;
+}
+
+/* line 137, ../sass/content.sass */
+.page-header {
+  margin-top: 0;
+}

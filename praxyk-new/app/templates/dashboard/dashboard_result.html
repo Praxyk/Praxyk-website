@@ -1,0 +1,110 @@
+{% extends "/dashboard/dashboard_base.html" %}
+
+{% block navbar %}
+{{ navbar|safe }}
+{% endblock %}
+
+{% block sidebar %}
+{{ sidebar|safe }}
+{% endblock %}
+
+{% block content %}
+    <div class="col-sm-offset-2 col-md-offset-1 col-lg-offset-1 col-sm-10 col-md-10 col-lg-10">
+    <br>
+    <div class="col-md-12 col-sm-12 col-lg-12">
+    <div class="row">
+		<div class="col-sm-3 col-md-2 col-lg-2" style="padding-top: 20px">
+			<div class="col-md-6 col-lg-6 col-sm-6" style="width:fill-div">
+				 <a href="/dashboard/results/{{ trans_id-1 }}"><div class="btn btn-default"> Prev </div></a>
+			</div>
+			<div class="col-md-6 col-lg-6 col-sm-6" style="width:fill-div" >
+				 <a href="/dashboard/results/{{ trans_id+1 }}"><div class="btn btn-default"> Next </div></a>
+			</div>
+		</div>
+		<div class="col-sm-8 col-md-8 col-lg-8">
+          <div class="page-header">
+              <h1 style="text-align:center">
+                  <strong>Results</strong> - <small> Transaction ID #{{ transaction.trans_id }}</small> 
+              </h1>
+          </div>
+		</div>
+    </div>
+    </div>
+						
+            <div class="col-sm-12 col-md-12 col-lg-12">
+            {% for result in (results.page.results if results.page else [])  %}
+            <div class="row">
+
+                <div class="col-sm-4 col-md-4 col-lg-4">
+                  <div class="card" style="min-height:150px">
+                    <div class="cardtitle">
+                        <div class="row">
+                            <div class="col-sm-2 col-md-1 col-lg-1">
+                                <h5 class="center pull-left"> {{ result.item_number }} </h5>
+                            </div>
+                            <div class="col-sm-8 col-md-10 col-lg-10">
+                                <h5 style="text-align:center"> Meta-Data </h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cardbody">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+                            <ul>
+                                <li> {{ result.item_name }}   </li>
+                                <li> {{ result.status }}   </li>
+                                <li> {{ result.size_KB }}   </li>
+                                <li> {{ result.created_at }}   </li>
+                            </ul>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="col-sm-8 col-md-8 col-lg-8">
+                  <div class="card" style="min-height:150px">
+                    <div class="cardtitle">
+                        <div class="row">
+                            <div class="col-sm-2 col-md-1 col-lg-1">
+                                <h5 class="center pull-left"> {{ result.item_number }} </h5>
+                            </div>
+                            <div class="col-sm-5 col-md-7 col-lg-7">
+                                <h5 style="text-align:center"> Predictions</h5>
+                            </div>
+                            <div class="col-sm-4 col-md-4 col-lg-4">
+								<a href="#">
+									<div class="btn btn-default pull-right" data-toggle="collapse" data-target="#predictions-list{{ result.item_number }}">
+										Toggle	
+									</div>
+								</a>
+							</div>
+							</div>
+                    </div>
+                    <div class="cardbody">
+                        <div class="col-sm-12 col-md-12 col-lg-12">
+							<div class="nav collapse in" id="predictions-list{{ result.item_number }}">
+								{% for res in result.prediction %}
+								<div class="row">
+									<div class="col-sm-4 col-md-4 col-lg-4">
+										{{ res }}
+									</div>
+									<div class="col-sm-8 col-md-8 col-lg-8">
+										{{ result.prediction[res] }}
+									</div>
+								</div>
+								{% endfor %}
+							</div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+            </div>  <!-- end row -->
+            {% endfor %}
+		  </div>
+        </div>
+
+        </div>
+    </div>
+    </div>
+		
+{% endblock %}

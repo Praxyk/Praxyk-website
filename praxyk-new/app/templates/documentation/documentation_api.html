@@ -1,0 +1,12 @@
+{% extends "documentation/base.html" %}
+
+{% block navbar %}
+    {{ navbar|safe }}
+{% endblock %}
+
+{% block content %}
+	<div class="card" style="padding:15px">
+    {{ page|safe }}
+	</div>
+{% endblock %}
+

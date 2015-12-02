@@ -1,0 +1,190 @@
+<head> 
+<script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+<link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+</head>
+{% extends "dashboard/dashboard_base.html" %}
+
+{% block sidebar %}
+    {{ sidebar|safe }}
+{% endblock %}
+
+{% block navbar %}
+    {{ navbar|safe }}
+{% endblock %}
+
+{% block content %}
+
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" style="padding:0">
+    <br>
+
+
+    <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12" style="padding:0">
+        <div class="row">                                                                                                                            
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12"  >
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12"  >
+                <div class="card">
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                      <div >
+                          <h3 style="text-align:center">
+								<strong>Prediction on Demand Services </strong>
+                          </h3>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+
+
+    <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+    <div class="card">
+    <div class='cardtitle'>
+        <div class="row">
+        <h5 style="text-align:center" >Optical Chacter Recognition</h5>
+        </div>
+    </div>
+    <div class="cardbody">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-lg-12">
+              <p>Optical Character Recognition is a Machine Learning model that can detect and extract text that is present in a given image.</p>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+    <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+    <div class="card">
+    <div class='cardtitle'>
+        <div class="row">
+        <h5 style="text-align:center" >Face Detection</h5>
+        </div>
+    </div>
+    <div class="cardbody">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-lg-12">
+              <p>This facial-detection service will return a list of attributes describing all of the faces found in the submitted image.</p>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+
+    <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+    <div class="card">
+    <div class='cardtitle'>
+        <div class="row">
+        <h5 style="text-align:center" >Spam Classification</h5>
+        </div>
+    </div>
+    <div class="cardbody">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-lg-12">
+              <p>This service takes a string of text and will tell you if it thinks that qualifies as spam to the best of it's ability.</p>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+    <div class="card" style="overflow: visible">
+    <div class='cardtitle'>
+        <div class="row">
+        <h5 style="text-align:center" >Make a Request</h5>
+        </div>
+    </div>
+    <div class="cardbody" style="overflow: visible">
+        <div class="row">
+        <div class="row">
+				<div id="new_trans_button" class="col-md-12 col-sm-12 col-lg-12"></div>
+		</div>
+
+			<div style="overflow:visible" class="col-md-12 col-sm-12 col-xs-12 col-lg-4">
+			<div class="form-group" id="#main-form-group">
+				<div class="col-md-12 col-sm-12 col-lg-12">
+					<label for="pod_name">Transaction Name</label>
+					<input type="text" class="form-control" id="pod_name" />
+					<br>
+				</div>
+				<div class="col-md-12 col-sm-12 col-lg-12">
+					<label for="pod_choices">Choose a Model</label>
+					<div class="list-group" id="pod_choices">
+					  <a href="#" val="ocr" class="list-group-item"> OCR</a>
+					  <a href="#" val="face_detect" class="list-group-item">Facial Detection</a>
+					  <a href="#" val="bayes_spam" class="list-group-item">Bayes-Spam Detection</a>
+					</div>
+					<div class="" val="ocr" id="pod_storage"></div>
+				</div>
+				<hr>
+				<div class="col-md-12 col-sm-12 col-lg-12 hidden-sm hidden-xs hidden-md">
+					<div onClick="make_request('pod', '{{ token }}')" style="width:100%" class="btn btn-success">Make Request</div>
+				</div>
+				<hr>
+			</div>
+			</div>
+
+            <div class="col-md-12 col-sm-12 col-xs-12 col-lg-8">
+				<div class="col-md-12 col-sm-12 col-lg-12">
+					<div id="upload_success" class="hidden alert alert-success"> 
+						<div class="row">
+						<div class="col-sm-6 col-xs-12 col-md-6 col-lg-8">
+							Uploads Success! 
+						</div>
+						<div class="col-sm-6 col-xs-12 col-md-6 col-lg-8">
+							<a id="upload_success_btn" href="#"><div class="btn btn-info"> View Transaction </div></a>
+						</div>
+						</div>
+					</div>
+					<div id="upload_failure" class="hidden alert alert-danger"></div>
+					<br>
+					<div class="form-group" id="#upload-form-group">
+						<label class="control-label">Choose Files</label>
+						<input id="pod-input" type="file" class="file" multiple="true" data-show-upload="false" data-show-caption="true">
+					</div>
+				</div>
+				<div class="col-md-12 col-sm-12 col-lg-12 hidden-xl hidden-lg">
+					<hr>
+					<div onClick="make_request('pod', '{{ token }}')" style="width:100%" class="btn btn-success">Make Request</div>
+				</div>
+            </div>
+            </div>
+        </div>
+		</div>
+    </div>
+
+	<div id="new_trans_card" class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+	</div>
+
+    </div>
+
+    </div>
+
+<script src="/static/js/scripts/praxyk.js"></script> 
+
+<script>
+$('#pod_choices > a').click(function() {
+	$("#pod_choices a").removeClass('active');
+    $(this).addClass('active');
+	$("#pod_storage").val($(this).val())
+});
+</script>
+{% endblock %}
+
+
+{% block scripts %}
+
+<script>
+$("#pod-input").fileinput({
+    // uploadUrl: "/file-upload-batch/2",
+	resizeImage : true,
+    allowedFileExtensions: ["jpg", "png", "gif"],
+    maxImageWidth: 50,
+    maxImageHeight: 50
+});
+</script>
+
+{% endblock %}

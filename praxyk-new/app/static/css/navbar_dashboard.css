@@ -1,0 +1,111 @@
+@import url(https://fonts.googleapis.com/css?family=PT+Sans+Narrow|Karla|Maven+Pro|Open+Sans|Roboto:400,300|Lato|PT+Sans|Ubuntu|Cabin);
+/* line 21, ../sass/_base.sass */
+.page-header {
+  color: #37474f;
+}
+
+/* line 24, ../sass/_base.sass */
+body {
+  background: #EEF2F1;
+  background: #78909C;
+  font-family: "Open Sans", sans-serif;
+  font-family: "Karla";
+  font-weight: normal;
+  height: 100%;
+  overflow: auto;
+}
+
+/* line 12, ../sass/navbar_dashboard.sass */
+.navbar {
+  z-index: 999999999;
+  border-radius: 0px;
+}
+/* line 15, ../sass/navbar_dashboard.sass */
+.navbar .affix {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+}
+/* line 19, ../sass/navbar_dashboard.sass */
+.navbar .navbar-default {
+  height: 50px;
+  background-color: #37474f;
+  border-color: #37474f;
+}
+/* line 23, ../sass/navbar_dashboard.sass */
+.navbar .navbar-default .navbar-brand {
+  color: #EEF0F2;
+}
+/* line 25, ../sass/navbar_dashboard.sass */
+.navbar .navbar-default .navbar-brand:hover, .navbar .navbar-default .navbar-brand:focus {
+  color: #FFF;
+}
+/* line 27, ../sass/navbar_dashboard.sass */
+.navbar .navbar-default .navbar-text {
+  color: #EEF0F2;
+  width: 75%;
+}
+/* line 30, ../sass/navbar_dashboard.sass */
+.navbar .navbar-default .navbar-nav {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+/* line 34, ../sass/navbar_dashboard.sass */
+.navbar .navbar-default .navbar-nav > li > a {
+  color: #EEF0F2;
+  font-size: 14px;
+}
+/* line 37, ../sass/navbar_dashboard.sass */
+.navbar .navbar-default .navbar-nav > li > a:hover, .navbar .navbar-default .navbar-nav > li > a:focus {
+  color: #FFF;
+}
+/* line 50, ../sass/navbar_dashboard.sass */
+.navbar .navbar-default .navbar-nav > .active > a, .navbar .navbar-default .navbar-nav > .active > a:hover, .navbar .navbar-default .navbar-nav > .active > a:focus {
+  color: #FFF;
+  background-color: #78909C;
+}
+/* line 54, ../sass/navbar_dashboard.sass */
+.navbar .navbar-default .navbar-nav > .open > a, .navbar .navbar-default .navbar-nav > .open > a:hover, .navbar .navbar-default .navbar-nav > .open > a:focus {
+  color: #FFF;
+  background-color: #78909C;
+}
+/* line 57, ../sass/navbar_dashboard.sass */
+.navbar .navbar-default .navbar-toggle {
+  border-color: #37474f;
+}
+/* line 59, ../sass/navbar_dashboard.sass */
+.navbar .navbar-default .navbar-toggle:hover, .navbar .navbar-default .navbar-toggle:focus {
+  background-color: #78909C;
+}
+/* line 61, ../sass/navbar_dashboard.sass */
+.navbar .navbar-default .navbar-toggle .icon-bar {
+  background-color: #EEF0F2;
+}
+/* line 63, ../sass/navbar_dashboard.sass */
+.navbar .navbar-default .navbar-collapse,
+.navbar .navbar-default .navbar-form {
+  border-color: #EEF0F2;
+}
+/* line 66, ../sass/navbar_dashboard.sass */
+.navbar .navbar-default .navbar-link {
+  color: #EEF0F2;
+}
+/* line 68, ../sass/navbar_dashboard.sass */
+.navbar .navbar-default .navbar-link:hover {
+  color: #37474f;
+}
+@media (max-width: 767px) {
+  /* line 72, ../sass/navbar_dashboard.sass */
+  .navbar .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #EEF0F2;
+  }
+  /* line 74, ../sass/navbar_dashboard.sass */
+  .navbar .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #FFF;
+  }
+  /* line 77, ../sass/navbar_dashboard.sass */
+  .navbar .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #FFF;
+    background-color: #78909C;
+  }
+}

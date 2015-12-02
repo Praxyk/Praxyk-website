@@ -1,8 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=PT+Sans+Narrow|Karla|Maven+Pro|Open+Sans|Roboto:400,300|Lato|PT+Sans|Ubuntu|Cabin);
 /* line 26, ../sass/_base.sass */
 .label {
-  padding-left: 5px;
-  padding-right: 5px;
+  margin: 5px;
+  padding: 5px;
 }
 
 /* line 30, ../sass/_base.sass */
@@ -10,7 +10,27 @@
   color: #37474f;
 }
 
-/* line 33, ../sass/_base.sass */
+/* line 34, ../sass/_base.sass */
+.btn {
+  font-size: 12px;
+  line-height: 1;
+  border-radius: 2px;
+}
+
+/* line 39, ../sass/_base.sass */
+.btn-primary {
+  color: #FFFFFF;
+  background-color: #37474f;
+  border: 1px solid #37474f;
+}
+
+/* line 44, ../sass/_base.sass */
+.btn-default {
+  background-color: #EEF0F2;
+  color: #37474f;
+}
+
+/* line 49, ../sass/_base.sass */
 body {
   background: #EEF2F1;
   background: #78909C;
@@ -21,7 +41,7 @@ body {
   overflow: auto;
 }
 
-/* line 42, ../sass/_base.sass */
+/* line 58, ../sass/_base.sass */
 p {
   color: #37474f;
   font-family: "Roboto Slab", serif;
@@ -29,7 +49,7 @@ p {
   font-weight: normal;
 }
 
-/* line 49, ../sass/_base.sass */
+/* line 65, ../sass/_base.sass */
 .jumbotron {
   background-color: #FFFFFF;
   padding: 20px;
@@ -37,44 +57,44 @@ p {
   margin-top: 80px;
   margin-bottom: 60px;
 }
-/* line 55, ../sass/_base.sass */
+/* line 71, ../sass/_base.sass */
 .jumbotron h1 {
   font-size: 67px;
 }
-/* line 57, ../sass/_base.sass */
+/* line 73, ../sass/_base.sass */
 .jumbotron h2 {
   font-size: 52px;
 }
-/* line 59, ../sass/_base.sass */
+/* line 75, ../sass/_base.sass */
 .jumbotron p {
   font-size: 16px;
 }
-/* line 63, ../sass/_base.sass */
+/* line 79, ../sass/_base.sass */
 .jumbotron .panel h1 {
   font-size: 50px;
 }
-/* line 65, ../sass/_base.sass */
+/* line 81, ../sass/_base.sass */
 .jumbotron .panel h2 {
   font-size: 42px;
 }
-/* line 67, ../sass/_base.sass */
+/* line 83, ../sass/_base.sass */
 .jumbotron .panel p {
   font-size: 14px;
   padding: 15px;
 }
 
-/* line 71, ../sass/_base.sass */
+/* line 87, ../sass/_base.sass */
 .row {
   overflow: hidden;
 }
 
-/* line 74, ../sass/_base.sass */
+/* line 90, ../sass/_base.sass */
 .card {
   overflow-y: auto;
   overflow-x: hidden;
   background-color: #FFFFFF;
-  border: solid 1px #EEF0F2;
-  border-radius: 5px;
+  border: solid 1px #616161;
+  border-radius: 2px;
   padding-top: 0px;
   margin: 20px;
   margin-top: 5px;
@@ -83,34 +103,35 @@ p {
   margin-left: -5px;
   padding-right: -5px;
   padding-left: -5px;
+  min-width: 280px;
 }
-/* line 88, ../sass/_base.sass */
+/* line 105, ../sass/_base.sass */
 .card h1 {
   font-size: 57px;
   color: #37474f;
 }
-/* line 91, ../sass/_base.sass */
+/* line 108, ../sass/_base.sass */
 .card h2 {
   font-size: 48px;
   color: #37474f;
 }
-/* line 94, ../sass/_base.sass */
+/* line 111, ../sass/_base.sass */
 .card h3 {
   color: #37474f;
 }
-/* line 96, ../sass/_base.sass */
+/* line 113, ../sass/_base.sass */
 .card h4 {
   color: #37474f;
 }
-/* line 98, ../sass/_base.sass */
+/* line 115, ../sass/_base.sass */
 .card h5 {
   color: #37474f;
 }
-/* line 100, ../sass/_base.sass */
+/* line 117, ../sass/_base.sass */
 .card p {
   font-size: 16px;
 }
-/* line 103, ../sass/_base.sass */
+/* line 120, ../sass/_base.sass */
 .card .cardtitle {
   text-align: left;
   border-bottom: solid 1px #E0E0E0;
@@ -118,7 +139,7 @@ p {
   padding-top: 2px;
   padding-bottom: 2px;
 }
-/* line 109, ../sass/_base.sass */
+/* line 126, ../sass/_base.sass */
 .card .cardtitle h1 {
   font-size: 50px;
   padding-top: 3px;
@@ -126,7 +147,7 @@ p {
   margin-bottom: 3px;
   margin-top: 3px;
 }
-/* line 115, ../sass/_base.sass */
+/* line 132, ../sass/_base.sass */
 .card .cardtitle h2 {
   font-size: 40px;
   padding-top: 3px;
@@ -134,7 +155,7 @@ p {
   margin-bottom: 3px;
   margin-top: 3px;
 }
-/* line 121, ../sass/_base.sass */
+/* line 138, ../sass/_base.sass */
 .card .cardtitle h3 {
   font-size: 32px;
   text-align: center;
@@ -143,7 +164,7 @@ p {
   margin-bottom: 3px;
   margin-top: 3px;
 }
-/* line 128, ../sass/_base.sass */
+/* line 145, ../sass/_base.sass */
 .card .cardtitle h4 {
   font-size: 24px;
   text-align: center;
@@ -152,7 +173,7 @@ p {
   margin-bottom: 3px;
   margin-top: 3px;
 }
-/* line 135, ../sass/_base.sass */
+/* line 152, ../sass/_base.sass */
 .card .cardtitle h5 {
   color: #37474f;
   font-size: 16px;
@@ -162,26 +183,26 @@ p {
   margin-bottom: 3px;
   margin-top: 3px;
 }
-/* line 144, ../sass/_base.sass */
+/* line 161, ../sass/_base.sass */
 .card .cardbody {
   padding: 10px;
   font-size: 12px;
 }
-/* line 147, ../sass/_base.sass */
+/* line 164, ../sass/_base.sass */
 .card .cardbody h1 {
   font-size: 50px;
   padding-top: 3px;
   padding-bottom: 3px;
   margin-top: 3px;
 }
-/* line 152, ../sass/_base.sass */
+/* line 169, ../sass/_base.sass */
 .card .cardbody h2 {
   font-size: 40px;
   padding-top: 3px;
   padding-bottom: 3px;
   margin-top: 3px;
 }
-/* line 157, ../sass/_base.sass */
+/* line 174, ../sass/_base.sass */
 .card .cardbody h3 {
   font-size: 32px;
   text-align: center;
@@ -189,7 +210,7 @@ p {
   padding-bottom: 3px;
   margin-top: 3px;
 }
-/* line 163, ../sass/_base.sass */
+/* line 180, ../sass/_base.sass */
 .card .cardbody h4 {
   font-size: 24px;
   text-align: center;
@@ -197,7 +218,7 @@ p {
   padding-bottom: 3px;
   margin-top: 3px;
 }
-/* line 169, ../sass/_base.sass */
+/* line 186, ../sass/_base.sass */
 .card .cardbody h5 {
   font-size: 16px;
   text-align: center;
@@ -205,11 +226,11 @@ p {
   padding-bottom: 3px;
   margin-top: 3px;
 }
-/* line 175, ../sass/_base.sass */
+/* line 192, ../sass/_base.sass */
 .card .cardbody p {
   font-size: 12px;
 }
-/* line 179, ../sass/_base.sass */
+/* line 196, ../sass/_base.sass */
 .card .cardtab {
   text-align: center;
   max-height: 100%;
@@ -219,7 +240,7 @@ p {
   padding: 7px;
   margin: 0px;
 }
-/* line 188, ../sass/_base.sass */
+/* line 205, ../sass/_base.sass */
 .card .cardtabtop {
   text-align: center;
   max-height: 40px;
@@ -230,7 +251,7 @@ p {
   margin: 0px;
 }
 
-/* line 200, ../sass/_base.sass */
+/* line 217, ../sass/_base.sass */
 .container .row {
   display: -webkit-box;
   display: -webkit-flex;
@@ -238,57 +259,57 @@ p {
   display: flex;
 }
 
-/* line 208, ../sass/_base.sass */
+/* line 225, ../sass/_base.sass */
 .panel .panel-heading h3 {
   padding-top: 0px;
   padding-bottom: 0px;
   margin: 0px;
 }
-/* line 212, ../sass/_base.sass */
+/* line 229, ../sass/_base.sass */
 .panel .panel-body {
   overflow-y: auto;
   padding: 0px;
 }
 
-/* line 217, ../sass/_base.sass */
+/* line 234, ../sass/_base.sass */
 .box {
   border: solid 1px #78909C;
   border-radius: 5px;
   margin: 10px;
 }
-/* line 222, ../sass/_base.sass */
+/* line 239, ../sass/_base.sass */
 .box .table {
   margin-bottom: 0px;
 }
 
-/* line 225, ../sass/_base.sass */
+/* line 242, ../sass/_base.sass */
 table {
   max-height: 200px;
   text-align: center;
   font-size: 14px;
 }
-/* line 232, ../sass/_base.sass */
+/* line 249, ../sass/_base.sass */
 table thead tr th {
   text-align: center;
   font-size: 15px;
 }
-/* line 237, ../sass/_base.sass */
+/* line 254, ../sass/_base.sass */
 table tbody tr td {
   font-size: 13px;
 }
 
-/* line 241, ../sass/_base.sass */
+/* line 258, ../sass/_base.sass */
 .table {
   max-height: 200px;
   text-align: center;
 }
-/* line 247, ../sass/_base.sass */
+/* line 264, ../sass/_base.sass */
 .table thead tr th {
   text-align: center;
   padding-left: 15px;
   padding-right: 15px;
 }
-/* line 253, ../sass/_base.sass */
+/* line 270, ../sass/_base.sass */
 .table tbody tr td {
   padding-left: 15px;
   padding-right: 15px;
